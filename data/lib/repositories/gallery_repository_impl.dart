@@ -6,9 +6,10 @@ class GalleryRepositoryImpl implements GalleryRepository {
   GalleryRepositoryImpl({required this.service});
 
   @override
-  Future<PaginationWrapperEntity<ImageEntity>> getGallery() async {
-    final PaginationWrapperEntity<ImageGalleryDTO> galleryItems =
-        await service.getGallery(isNew: true, page: 1, limit: 15);
+  Future<PaginationWrapperEntity<ImageEntity>> getGallery(
+      {required bool isNew, required int limit, required int page}) async {
+    final galleryItems =
+        await service.getGallery(isNew: isNew, page: page, limit: limit);
 
     return PaginationWrapperEntity(
       totalItems: galleryItems.totalItems,
