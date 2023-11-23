@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_generating_practice/presentation/extensions/theme/light_theme.dart';
 import 'package:flutter_generating_practice/presentation/screens/gallery_screen/gallery_screen.dart';
@@ -19,4 +21,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
