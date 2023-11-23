@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 GetIt injection = GetIt.I;
 
 Future<void> initializeDependencies() async {
-  final Dio dio = Dio();
+  final dio = Dio();
 
   final service = GalleryService(dio);
 

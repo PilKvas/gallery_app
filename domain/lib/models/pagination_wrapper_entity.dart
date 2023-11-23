@@ -2,7 +2,6 @@ part of domain;
 
 
 
-
 @Freezed(genericArgumentFactories: true)
 class PaginationWrapperEntity<T> with _$PaginationWrapperEntity<T> {
   const factory PaginationWrapperEntity({

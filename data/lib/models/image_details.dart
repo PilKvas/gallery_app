@@ -14,6 +14,6 @@ class ImageDetailsDTO with _$ImageDetailsDTO {
 
   ImageDetails mapToEntity() {
     return ImageDetails(
-        id: id, name: 'https://gallery.prod1.webant.ru/media/$name}');
+        id: id, name: 'https://gallery.prod1.webant.ru/media/$name');
   }
 }

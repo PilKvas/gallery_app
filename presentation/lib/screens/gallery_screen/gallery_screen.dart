@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of presentation;
 
 class GalleryScreen extends StatelessWidget {
   const GalleryScreen({super.key});
@@ -43,22 +43,27 @@ class GalleryScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: const SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: TabBarView(
-                  children: <Widget>[
-                    Center(
-                      child: Text("New"),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Expanded(
+                  child: TabBarView(
+                    children: List.generate(
+                      2,
+                      (index) => BlocProvider(
+                        create: (_) => GalleryBloc(GetIt.I<FetchDataUseCase>())
+                          ..add(
+                            const GalleryEvent.galleryListLoaded(),
+                          ),
+                        child: MediaList(),
+                      ),
                     ),
-                    Center(
-                      child: Text("Popular"),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

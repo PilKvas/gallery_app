@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_generating_practice/presentation/extensions/theme/app_colors.dart';
+part of presentation;
 
 final lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
