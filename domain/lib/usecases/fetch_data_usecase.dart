@@ -5,7 +5,7 @@ class FetchDataUseCase {
 
   FetchDataUseCase({required GalleryRepository galleryRepository}) : _galleryRepository = galleryRepository;
 
-  Future<PaginationWrapperEntity<ImageEntity>> fetchGalleryData(){
-    return _galleryRepository.getGallery();
+  Future<PaginationWrapperEntity<ImageEntity>> fetchGalleryData({required bool isNew, required int page, required int limit}){
+    return _galleryRepository.getGallery(isNew: isNew, page: page, limit: limit);
   }
 }
