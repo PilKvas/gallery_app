@@ -1,9 +1,9 @@
 part of data;
 
 @freezed
-class ImageGallery with _$ImageGallery {
-  const ImageGallery._();
-  const factory ImageGallery({
+class ImageGalleryDTO with _$ImageGalleryDTO {
+  const ImageGalleryDTO._();
+  const factory ImageGalleryDTO({
     required ImageDetailsDTO image,
     required String name,
     required int id,
@@ -12,9 +12,9 @@ class ImageGallery with _$ImageGallery {
     @JsonKey(name: 'new') required bool isNew,
     @JsonKey(name: 'popular') required bool isPopular,
     required String user,
-  }) = _ImageGallery;
-  factory ImageGallery.fromJson(Map<String, Object?> json) =>
-      _$ImageGalleryFromJson(json);
+  }) = _ImageGalleryDTO;
+  factory ImageGalleryDTO.fromJson(Map<String, Object?> json) =>
+      _$ImageGalleryDTOFromJson(json);
 
   ImageEntity mapToEntity() {
     return ImageEntity(

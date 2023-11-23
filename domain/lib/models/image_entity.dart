@@ -1,5 +1,6 @@
 part of domain;
 
+
 @freezed
 class ImageEntity with _$ImageEntity {
   const factory ImageEntity({

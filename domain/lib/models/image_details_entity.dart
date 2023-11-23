@@ -1,5 +1,6 @@
 part of domain;
 
+
 @freezed
 class ImageDetails with _$ImageDetails {
   const factory ImageDetails({
