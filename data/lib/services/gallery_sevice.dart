@@ -8,6 +8,7 @@ abstract class GalleryService {
   Future<PaginationWrapperEntity<ImageGalleryDTO>> getGallery({
     @Query('new') required bool isNew,
     @Query('page') required int page,
-    @Query('limit') required int limit,
-  });
+    @Query('limit') int limit = 10,
+  }
+  );
 }

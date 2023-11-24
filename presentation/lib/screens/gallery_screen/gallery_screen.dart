@@ -1,70 +1,69 @@
 part of presentation;
 
-class GalleryScreen extends StatelessWidget {
+class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key});
 
   @override
+  State<GalleryScreen> createState() => _GalleryScreenState();
+}
+
+class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProviderStateMixin {
+  late final TabController controller = TabController(length: 2, vsync: this);
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: TextField(
-            decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(borderSide: BorderSide()),
-              contentPadding: const EdgeInsets.all(12),
-              hintText: 'Search',
-              suffixIcon: const Icon(
-                Icons.search,
-                color: Color.fromARGB(255, 237, 89, 146),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(12),
+            hintText: 'Search',
+            suffixIcon: const Icon(
+              Icons.search,
+              color: Color.fromARGB(255, 237, 89, 146),
             ),
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(kToolbarHeight),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: TabBar(
-                indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
-                tabs: const [
-                  Tab(
-                    text: 'New',
-                  ),
-                  Tab(
-                    text: 'Popular',
-                  ),
-                ],
-              ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(),
             ),
           ),
         ),
-        body: SafeArea(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Expanded(
-                  child: TabBarView(
-                    children: List.generate(
-                      2,
-                      (index) => BlocProvider(
-                        create: (_) => GalleryBloc(GetIt.I<FetchDataUseCase>())
-                          ..add(
-                            const GalleryEvent.galleryListLoaded(),
-                          ),
-                        child: MediaList(),
-                      ),
-                    ),
-                  ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: TabBar(
+              controller: controller,
+              indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
+              tabs: const [
+                Tab(
+                  text: 'New',
+                ),
+                Tab(
+                  text: 'Popular',
                 ),
               ],
             ),
           ),
+        ),
+      ),
+
+      body: TabBarView(
+        controller: controller,
+        children: List.generate(
+          2,
+          (index) {
+            return BlocProvider(
+            create: (_) => GalleryBloc(
+              fetchDataUseCase: injection(),
+            )..add(
+                GalleryEvent.galleryListLoaded(
+                  isNew: index == 0,
+                ),
+              ),
+            child: MediaList(isNew: index == 0),
+          );
+          },
         ),
       ),
     );

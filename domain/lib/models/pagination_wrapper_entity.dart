@@ -10,6 +10,8 @@ class PaginationWrapperEntity<T> with _$PaginationWrapperEntity<T> {
     required final int countOfPages,
     @Default([]) final List<T> data,
   }) = _PaginationWrapperEntity;
+
+
   factory PaginationWrapperEntity.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>_$PaginationWrapperEntityFromJson(json, fromJsonT);
 }

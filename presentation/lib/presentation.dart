@@ -2,13 +2,14 @@
 library presentation;
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:presentation/presentation.dart';
-
+import 'package:flutter/cupertino.dart';
 export 'screens/gallery_screen/gallery.dart';
 
 part 'extensions/enum_status.dart';
