@@ -9,7 +9,7 @@ part 'models/user_entity.dart';
 part 'models/image_entity.dart';
 part 'models/pagination_wrapper_entity.dart';
 part 'models/image_details_entity.dart';
-
+part 'usecases/load_user_usecase.dart';
 
 part 'domain.g.dart';
 part 'domain.freezed.dart';

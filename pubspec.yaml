@@ -21,8 +21,11 @@ dependencies:
   dio: ^5.3.4
 
   cupertino_icons: ^1.0.2
+
   auto_route: ^7.8.4
+
   get_it: ^7.6.4
+
   flutter_bloc: ^8.1.3
 
 dev_dependencies:
@@ -32,8 +35,5 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
-
   uses-material-design: true
-flutter_intl:
-  enabled: true
+

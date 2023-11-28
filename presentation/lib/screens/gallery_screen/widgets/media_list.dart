@@ -36,65 +36,96 @@ class _MediaListState extends State<MediaList> {
   Widget build(BuildContext context) {
     final bloc = context.read<GalleryBloc>();
 
-
-    return SingleChildScrollView(
-      controller: scrollController,
-      child: BlocBuilder<GalleryBloc, GalleryState>(
-        builder: (context, state) {
-
-          if (state.status == Status.loading && !state.isPaginating) {
-            return const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  Text('Loading...'),
-                ],
-              ),
-            );
-          }
-            return RefreshIndicator(
-              onRefresh: () async {
-                return bloc.add(
-                  GalleryEvent.galleryListLoaded(
-                    isNew: widget.isNew,
-                    refresh: true,
+    return RefreshIndicator(
+      onRefresh: () async {
+        return bloc.add(
+          GalleryEvent.galleryListLoaded(
+            isNew: widget.isNew,
+            refresh: true,
+          ),
+        );
+      },
+      child: SingleChildScrollView(
+        controller: scrollController,
+        child: BlocBuilder<GalleryBloc, GalleryState>(
+          builder: (context, state) {
+            if (state.status == Status.loading && !state.isPaginating) {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width ,
+                height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height / 2),
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomProgressIndicator(),
+                      Text('Loading...'),
+                    ],
                   ),
-                );
-              },
-
-              child: Column(
-                children: [
-                  GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 10,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                    ),
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: state.item.length,
-                    itemBuilder: (context, index) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          state.item[index].image?.name ?? '',
-                          fit: BoxFit.fill,
+                ),
+              );
+            }
+            return Column(
+              children: [
+                GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 20,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 20,
+                  ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: state.item.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        AutoRouter.of(context).push(
+                          GalleryItemRoute(
+                            imageInfo: state.item[index],
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow:  [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                offset: const Offset(0, 3),
+                                blurRadius: 5,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: FadeInImage.memoryNetwork(
+                              imageErrorBuilder: (context, error, trace) {
+                                return const Icon(
+                                  Icons.error,
+                                  color: Colors.red,
+                                );
+                              },
+                              placeholder: kTransparentImage,
+                              image: state.item[index].image?.name ?? '',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                         ),
-                      );
-                    },
+                      ),
+                    );
+                  },
+                ),
+                if (state.status == Status.loading && state.isPaginating) ...[
+                  const Center(
+                    child: CustomProgressIndicator(),
                   ),
-                  if (state.status == Status.loading && state.isPaginating) ...[
-
-
-                    const Center(child: CircularProgressIndicator(),),
-
-                  ]
-
-                ],
-              ),
+                ]
+              ],
             );
-        },
+          },
+        ),
       ),
     );
   }

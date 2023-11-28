@@ -1,5 +1,16 @@
-part of presentation;
+part of '../../presentation.dart';
 
+@RoutePage()
+class GalleryStackScreen extends StatelessWidget {
+  const GalleryStackScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const AutoRouter();
+  }
+}
+
+@RoutePage()
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key});
 
@@ -17,14 +28,13 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
         title: TextField(
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(12),
-            hintText: 'Search',
+            hintText: S.of(context).searchField,
             suffixIcon: const Icon(
               Icons.search,
               color: Color.fromARGB(255, 237, 89, 146),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(),
             ),
           ),
         ),
@@ -35,35 +45,45 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
             child: TabBar(
               controller: controller,
               indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
-              tabs: const [
+              tabs: [
                 Tab(
-                  text: 'New',
+                  text: S.of(context).newTab,
                 ),
                 Tab(
-                  text: 'Popular',
+                  text: S.of(context).popularTab,
                 ),
               ],
             ),
           ),
         ),
       ),
-
-      body: TabBarView(
-        controller: controller,
-        children: List.generate(
-          2,
-          (index) {
-            return BlocProvider(
-            create: (_) => GalleryBloc(
-              fetchDataUseCase: injection(),
-            )..add(
-                GalleryEvent.galleryListLoaded(
-                  isNew: index == 0,
-                ),
-              ),
-            child: MediaList(isNew: index == 0),
-          );
-          },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 15,
+            left: 15,
+            right: 15,
+          ),
+          child: TabBarView(
+            controller: controller,
+            children: List.generate(
+              2,
+              (index) {
+                return BlocProvider(
+                  create: (_) => GalleryBloc(
+                    fetchDataUseCase: injection(),
+                  )..add(
+                      GalleryEvent.galleryListLoaded(
+                        isNew: index == 0,
+                      ),
+                    ),
+                  child: MediaList(
+                    isNew: index == 0,
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

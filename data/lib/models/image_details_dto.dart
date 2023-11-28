@@ -9,11 +9,9 @@ class ImageDetailsDTO with _$ImageDetailsDTO {
     required String name,
   }) = _ImageDetails;
 
-  factory ImageDetailsDTO.fromJson(Map<String, Object?> json) =>
-      _$ImageDetailsDTOFromJson(json);
+  factory ImageDetailsDTO.fromJson(Map<String, Object?> json) => _$ImageDetailsDTOFromJson(json);
 
   ImageDetails mapToEntity() {
-    return ImageDetails(
-        id: id, name: 'https://gallery.prod1.webant.ru/media/$name');
+    return ImageDetails(id: id, name: 'https://gallery.prod1.webant.ru/media/$name');
   }
 }

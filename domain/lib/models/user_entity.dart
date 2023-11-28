@@ -10,6 +10,6 @@ class UserEntity with _$UserEntity {
     String? phone,
     String? fullName,
     DateTime? birthDay,
-    @Default([]) List<String> roles,
+    List<String>? roles,
   }) = _UserEntity;
 }

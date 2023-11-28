@@ -1,4 +1,3 @@
-
 part of '../presentation.dart';
 
 class AppColors {
@@ -9,5 +8,5 @@ class AppColors {
   static const titleColor = Color.fromARGB(255, 47, 23, 103);
   static const subTitleColor = Color.fromARGB(255, 140, 140, 140);
   static const descriptionColor = Color(0xFF4A4A4A);
-  static const navigationButtonColor =  Color.fromARGB(255, 47, 23, 103);
+  static const navigationButtonColor = Color.fromARGB(255, 47, 23, 103);
 }

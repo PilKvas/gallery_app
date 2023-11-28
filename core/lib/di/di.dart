@@ -3,15 +3,33 @@ part of core;
 GetIt injection = GetIt.I;
 
 Future<void> initializeDependencies() async {
-  final dio = Dio();
+  final dio = Dio(
+    BaseOptions(baseUrl: AppConst.apiUrl)
+  );
 
-  final service = GalleryService(dio);
+  final serviceGalleryList = GalleryService(dio);
+
+  final serviceGalleryItem = GalleryDetailsService(dio);
 
   injection
     ..registerLazySingleton<GalleryRepository>(
-      () => GalleryRepositoryImpl(service: service),
+      () => GalleryRepositoryImpl(
+        service: serviceGalleryList,
+      ),
+    )
+    ..registerLazySingleton<GalleryItemRepository>(
+      () => GalleryItemRepositoryImpl(
+        service: serviceGalleryItem,
+      ),
     )
     ..registerLazySingleton<FetchDataUseCase>(
-      () => FetchDataUseCase(galleryRepository: injection()),
+      () => FetchDataUseCase(
+        galleryRepository: injection(),
+      ),
+    )
+    ..registerLazySingleton<LoadUserUseCase>(
+      () => LoadUserUseCase(
+        galleryItemRepository: injection(),
+      ),
     );
 }

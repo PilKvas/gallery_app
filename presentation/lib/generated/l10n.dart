@@ -49,6 +49,46 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `oh Shucks`
+  String get ohShuks {
+    return Intl.message(
+      'oh Shucks',
+      name: 'ohShuks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New`
+  String get newTab {
+    return Intl.message(
+      'New',
+      name: 'newTab',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular`
+  String get popularTab {
+    return Intl.message(
+      'Popular',
+      name: 'popularTab',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get searchField {
+    return Intl.message(
+      'Search',
+      name: 'searchField',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

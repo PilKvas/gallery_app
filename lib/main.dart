@@ -1,30 +1,31 @@
-
-
-import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:presentation/presentation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-
+import 'package:presentation/routing/routing.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   initializeDependencies();
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
-class MyApp extends StatelessWidget{
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  final _appRouter = AppRouter();
+   MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: lightTheme,
       themeMode: ThemeMode.light,
-      home: const GalleryScreen(),
+      routerConfig: _appRouter.config(),
+      localizationsDelegates: const [
+        S.delegate,
+      ],
+      supportedLocales:  [
+        ...S.delegate.supportedLocales,
+      ],
     );
   }
 }

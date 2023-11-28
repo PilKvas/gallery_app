@@ -1,5 +1,4 @@
-part of presentation;
-
+part of '../presentation.dart';
 
 class NoInternetConnectionWidget extends StatelessWidget {
   const NoInternetConnectionWidget({
@@ -17,19 +16,19 @@ class NoInternetConnectionWidget extends StatelessWidget {
           height: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              SvgPicture.asset("assets/logo.svg"),
+              SvgPicture.asset('assets/logo.svg'),
               const SizedBox(
                 height: 20,
               ),
               Text(
-                'Oh shucks!',
+                '',
                 style: Theme.of(context).textTheme.errorTitle,
               ),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                'Slow or no internet connection.\nPlease check your internet settings',
+                '',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.errorSubtitle,
               ),

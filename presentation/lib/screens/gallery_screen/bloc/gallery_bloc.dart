@@ -5,31 +5,37 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
 
   GalleryBloc({required FetchDataUseCase fetchDataUseCase})
       : _fetchDataUseCase = fetchDataUseCase,
-        super(GalleryState()) {
+        super(const GalleryState()) {
     on<_GalleryListLoaded>(
-      (event, emit) async {
+      _onLoadImages,
+      transformer: droppable(),
+    );
+  }
 
-        if (state.status == Status.loading)return;
+  Future<void> _onLoadImages(
+    _GalleryListLoaded event,
+    Emitter<GalleryState> emit,
+  ) async {
+    if (state.noItemsLeft && !event.refresh) return;
+    var page = 1 + state.item.length ~/ ApiConfig.limit;
 
-        var page = 1 + state.item.length ~/ 10;
+    emit(
+      state.copyWith(status: Status.loading, isPaginating: page != 1),
+    );
+    if (event.refresh) page = 1;
 
-        emit(
-          state.copyWith(status: Status.loading, isPaginating: page != 1),
-        );
+    final response = await _fetchDataUseCase.fetchGalleryData(
+      isNew: event.isNew,
+      page: page,
+    );
 
-        if (event.refresh) page = 1;
-
-        final response = await _fetchDataUseCase.fetchGalleryData(
-          isNew: event.isNew,
-          page: page,
-        );
-        emit(
-          state.copyWith(
-            status: Status.success,
-            item: event.refresh ? response.data : [...state.item, ...response.data],
-          ),
-        );
-      },
+    emit(
+      state.copyWith(
+        totalItems: response.totalItems,
+        status: Status.success,
+        item: event.refresh ? response.data : [...state.item, ...response.data],
+        noItemsLeft: response.data.length < ApiConfig.limit,
+      ),
     );
   }
 }

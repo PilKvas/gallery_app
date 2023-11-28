@@ -11,6 +11,10 @@ dependencies:
   dio: ^5.3.4
   domain:
     path: ../domain
+  core:
+    path: ../core
+  presentation:
+    path: ../presentation
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   retrofit: ^4.0.3
