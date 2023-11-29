@@ -20,7 +20,6 @@ export 'screens/gallery_screen/gallery.dart';
 
 part 'extensions/enum_status.dart';
 part 'helpers/date_converter_helper.dart';
-part 'resources/api_config.dart';
 part 'screens/gallery_item_screen/gallery_item_screen.dart';
 part 'screens/gallery_item_screen/widgets/item_image.dart';
 part 'screens/gallery_screen/gallery_screen.dart';

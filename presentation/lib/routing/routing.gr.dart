@@ -51,7 +51,7 @@ abstract class _$AppRouter extends RootStackRouter {
 /// [GalleryItemScreen]
 class GalleryItemRoute extends PageRouteInfo<GalleryItemRouteArgs> {
   GalleryItemRoute({
-    required ImageEntity imageInfo,
+    required ImageGalleryModel imageInfo,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
@@ -75,7 +75,7 @@ class GalleryItemRouteArgs {
     this.key,
   });
 
-  final ImageEntity imageInfo;
+  final ImageGalleryModel imageInfo;
 
   final Key? key;
 

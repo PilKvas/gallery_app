@@ -16,17 +16,4 @@ class UserDto with _$UserDto {
   }) = _UserDto;
 
   factory UserDto.fromJson(Map<String, Object?> json) => _$UserDtoFromJson(json);
-
-  UserEntity mapToEntity() {
-    return UserEntity(
-      id: id,
-      email: email,
-      enabled: enabled,
-      username: username,
-      phone: phone,
-      fullName: fullName,
-      birthDay: birthDay,
-      roles: roles,
-    );
-  }
 }

@@ -1,13 +1,14 @@
 part of data;
 
-class GalleryItemRepositoryImpl implements GalleryItemRepository {
+class UserRepositoryImpl implements UserRepository {
+  final UserMappr mapper = UserMappr();
   final GalleryDetailsService service;
 
-  GalleryItemRepositoryImpl({required this.service});
+  UserRepositoryImpl({required this.service});
 
   @override
-  Future<UserEntity> getUserInfo({required int id}) async {
-    final UserDto userInfo = await service.getGallery(id: id);
-    return userInfo.mapToEntity();
+  Future<UserModel> getUserInfo({required int id}) async {
+    final UserDto userInfo = await service.getUser(id: id);
+    return mapper.convert(userInfo);
   }
 }

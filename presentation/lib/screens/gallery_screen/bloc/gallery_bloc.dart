@@ -17,7 +17,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     Emitter<GalleryState> emit,
   ) async {
     if (state.noItemsLeft && !event.refresh) return;
-    var page = 1 + state.item.length ~/ ApiConfig.limit;
+    var page = 1 + state.item.length ~/ ApiConst.limit;
 
     emit(
       state.copyWith(status: Status.loading, isPaginating: page != 1),
@@ -35,7 +35,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         totalItems: response.totalItems,
         status: Status.success,
         item: event.refresh ? response.data : [...state.item, ...response.data],
-        noItemsLeft: response.data.length < ApiConfig.limit,
+        noItemsLeft: response.data.length < ApiConst.limit,
       ),
     );
   }

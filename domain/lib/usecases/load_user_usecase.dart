@@ -1,15 +1,16 @@
 part of domain;
 
 class LoadUserUseCase {
-  final GalleryItemRepository _galleryItemRepository;
+  final UserRepository _galleryItemRepository;
 
-  LoadUserUseCase({required GalleryItemRepository galleryItemRepository})
+  LoadUserUseCase({required UserRepository galleryItemRepository})
       : _galleryItemRepository = galleryItemRepository;
 
-  Future<UserEntity> loadUserData({required String id}) {
+  Future<UserModel> loadUserData({required String id}) {
+    print('api/6'.split('/').last);
     return _galleryItemRepository.getUserInfo(
       id: int.parse(
-        id.replaceAll(RegExp('[^0-9]'), ''),
+        id.split('/').last
       ),
     );
   }

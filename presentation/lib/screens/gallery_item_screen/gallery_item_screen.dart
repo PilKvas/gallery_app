@@ -2,7 +2,7 @@ part of '../../presentation.dart';
 
 @RoutePage()
 class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
-  final ImageEntity imageInfo;
+  final ImageGalleryModel imageInfo;
 
   const GalleryItemScreen({required this.imageInfo, super.key});
 
