@@ -1,10 +1,7 @@
 part of '../presentation.dart';
 
 class DateConverterHelper {
-  static String convertDate(DateTime? dateTime) {
-    if (dateTime != null) {
-      return DateFormat('dd.MM.yyyy','en').format(dateTime);
-    }
-    return '';
+  static String convertDate(DateTime dateTime) {
+      return DateFormat('dd.MM.yyyy').format(dateTime);
   }
 }

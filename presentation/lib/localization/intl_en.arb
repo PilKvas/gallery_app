@@ -3,5 +3,5 @@
   "newTab": "New",
   "popularTab": "Popular",
   "searchField": "Search",
-  "noSearch": "There is no pictures."
+  "loading": "Loading..."
 }

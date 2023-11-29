@@ -90,11 +90,11 @@ class S {
     );
   }
 
-  /// `There is no pictures.`
-  String get noSearch {
+  /// `Loading...`
+  String get loading {
     return Intl.message(
-      'There is no pictures.',
-      name: 'noSearch',
+      'Loading...',
+      name: 'loading',
       desc: '',
       args: [],
     );
