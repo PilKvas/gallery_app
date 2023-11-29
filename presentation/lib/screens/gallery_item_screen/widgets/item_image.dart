@@ -2,7 +2,7 @@ part of '../../../presentation.dart';
 
 
 class ItemImage extends StatelessWidget {
-  final ImageEntity imageInfo;
+  final ImageGalleryModel imageInfo;
   const ItemImage({required this.imageInfo, super.key});
 
   @override

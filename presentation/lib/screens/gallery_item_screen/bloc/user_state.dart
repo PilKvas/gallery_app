@@ -4,6 +4,6 @@ part of '../gallery_item.dart';
 class UserState with _$UserState {
   const factory UserState({
     @Default(Status.initial) Status status,
-    UserEntity? item,
+    UserModel? item,
   }) = _UserState;
 }

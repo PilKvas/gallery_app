@@ -5,9 +5,9 @@ abstract class GalleryService {
   factory GalleryService(Dio dio) = _GalleryService;
 
   @GET('/api/photos')
-  Future<PaginationWrapperEntity<ImageGalleryDTO>> getGallery({
+  Future<PaginationWrapper<ImageGalleryDTO>> getGallery({
     @Query('new') required bool isNew,
     @Query('page') required int page,
-    @Query('limit') int limit = ApiConfig.limit,
+    @Query('limit') int limit = ApiConst.limit,
   });
 }

@@ -1,8 +1,8 @@
 part of domain;
 
 @freezed
-class UserEntity with _$UserEntity {
-  const factory UserEntity({
+class UserModel with _$UserModel {
+  const factory UserModel({
     required int id,
     required String email,
     required bool enabled,
@@ -11,5 +11,5 @@ class UserEntity with _$UserEntity {
     String? fullName,
     DateTime? birthDay,
     List<String>? roles,
-  }) = _UserEntity;
+  }) = _UserModel;
 }

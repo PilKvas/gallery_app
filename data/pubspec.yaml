@@ -13,15 +13,15 @@ dependencies:
     path: ../domain
   core:
     path: ../core
-  presentation:
-    path: ../presentation
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   retrofit: ^4.0.3
   retrofit_generator: ^8.0.4
+  auto_mappr_annotation: ^2.1.0
   # path: ^1.8.0
 
 dev_dependencies:
+  auto_mappr: ^2.2.0
   build_runner: ^2.4.6
   freezed: ^2.4.5
   json_serializable: ^6.7.1

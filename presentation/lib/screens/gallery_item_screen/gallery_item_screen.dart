@@ -2,13 +2,12 @@ part of '../../presentation.dart';
 
 @RoutePage()
 class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
-  final ImageEntity imageInfo;
+  final ImageGalleryModel imageInfo;
 
   const GalleryItemScreen({required this.imageInfo, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<UserBloc>();
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(

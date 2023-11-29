@@ -1,11 +1,10 @@
 part of domain;
 
 
-
 @freezed
-class ImageEntity with _$ImageEntity {
-  const factory ImageEntity({
-    ImageDetails? image,
+class ImageGalleryModel with _$ImageGalleryModel {
+  const factory ImageGalleryModel({
+    ImageDetailsModel? image,
     required String name,
     required int id,
     required DateTime dateCreate,
@@ -13,5 +12,5 @@ class ImageEntity with _$ImageEntity {
     required bool isNew,
     required bool isPopular,
     String? user,
-  }) = _ImageEntity;
+  }) = _ImageGalleryModel;
 }

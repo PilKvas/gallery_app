@@ -1,4 +1,4 @@
-part of core;
+part of '../core.dart';
 
 GetIt injection = GetIt.I;
 
@@ -17,8 +17,8 @@ Future<void> initializeDependencies() async {
         service: serviceGalleryList,
       ),
     )
-    ..registerLazySingleton<GalleryItemRepository>(
-      () => GalleryItemRepositoryImpl(
+    ..registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(
         service: serviceGalleryItem,
       ),
     )
