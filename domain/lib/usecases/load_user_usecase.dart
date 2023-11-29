@@ -7,7 +7,6 @@ class LoadUserUseCase {
       : _galleryItemRepository = galleryItemRepository;
 
   Future<UserModel> loadUserData({required String id}) {
-    print('api/6'.split('/').last);
     return _galleryItemRepository.getUserInfo(
       id: int.parse(
         id.split('/').last

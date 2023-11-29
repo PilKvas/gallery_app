@@ -8,7 +8,10 @@ import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
-import 'mapper/user_mapper.dart';
+import 'package:data/mapper/user_mapper.dart';
+
+
+
 
 export 'mapper/user_mapper.dart';
 

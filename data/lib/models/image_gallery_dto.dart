@@ -1,4 +1,5 @@
-part of data;
+part of '../data.dart';
+
 
 
 @freezed
@@ -6,7 +7,7 @@ class ImageGalleryDTO with _$ImageGalleryDTO {
   const ImageGalleryDTO._();
   const factory ImageGalleryDTO({
     ImageDetailsDTO? image,
-    String? name,
+    required String name,
     required int id,
     required DateTime dateCreate,
     required String description,

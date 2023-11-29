@@ -178,7 +178,7 @@ class _MediaListState extends State<MediaList> {
                                   );
                                 },
                                 placeholder: kTransparentImage,
-                                image: state.item[index].image?.name ?? '',
+                                image: AppConst.apiUrlMedia + state.item[index].image!.name ,
                                 fit: BoxFit.fill,
                               ),
                             ),
