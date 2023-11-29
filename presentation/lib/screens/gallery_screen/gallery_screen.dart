@@ -28,10 +28,10 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
         title: TextField(
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(12),
-            hintText: S.of(context).searchField,
+            hintText: context.localization.searchField,
             suffixIcon: const Icon(
               Icons.search,
-              color: Color.fromARGB(255, 237, 89, 146),
+              color: AppColors.subTitleColor,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
@@ -47,10 +47,10 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
               indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
               tabs: [
                 Tab(
-                  text: S.of(context).newTab,
+                  text: context.localization.newTab,
                 ),
                 Tab(
-                  text: S.of(context).popularTab,
+                  text: context.localization.popularTab,
                 ),
               ],
             ),

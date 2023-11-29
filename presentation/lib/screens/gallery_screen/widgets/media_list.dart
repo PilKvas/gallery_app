@@ -52,13 +52,13 @@ class _MediaListState extends State<MediaList> {
             if (state.status == Status.loading && !state.isPaginating) {
               return SizedBox(
                 width: MediaQuery.of(context).size.width ,
-                height: MediaQuery.of(context).size.height - (MediaQuery.of(context).size.height / 2),
-                child: const Center(
+                height: context.screenSize.height - context.screenSize.height / 2,
+                child:  Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomProgressIndicator(),
-                      Text('Loading...'),
+                      const CustomProgressIndicator(),
+                      Text(context.localization.loading),
                     ],
                   ),
                 ),
@@ -78,7 +78,7 @@ class _MediaListState extends State<MediaList> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        AutoRouter.of(context).push(
+                        context.router.push(
                           GalleryItemRoute(
                             imageInfo: state.item[index],
                           ),

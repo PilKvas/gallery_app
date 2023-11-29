@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: const [
         S.delegate,
       ],
-      supportedLocales:  [
-        ...S.delegate.supportedLocales,
-      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }

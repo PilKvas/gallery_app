@@ -33,7 +33,7 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
                   children: [
                     Text(
                       imageInfo.name,
-                      style: Theme.of(context).textTheme.itemTitle,
+                      style: context.styling.textTheme.itemTitle,
                     ),
                     const SizedBox(
                       height: 10,
@@ -41,15 +41,17 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          state.item?.username ?? 'No user',
-                          style: Theme.of(context).textTheme.itemUser,
-                        ),
+                        if (state.item?.username != null) ...[
+                          Text(
+                            state.item!.username,
+                            style: context.styling.textTheme.itemUser,
+                          ),
+                        ],
                         Text(
                           DateConverterHelper.convertDate(
                             imageInfo.dateCreate,
                           ),
-                          style: Theme.of(context).textTheme.itemDate,
+                          style: context.styling.textTheme.itemDate,
                         ),
                       ],
                     ),
@@ -58,7 +60,7 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
                     ),
                     Text(
                       imageInfo.description,
-                      style: Theme.of(context).textTheme.itemDescription,
+                      style: context.styling.textTheme.itemDescription,
                     )
                   ],
                 ),
@@ -76,7 +78,7 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
       create: (context) => UserBloc(
         injection(),
       )..add(
-          UserEvent.galleryItemLoaded(id: imageInfo.user),
+          UserEvent.loadUser(id: imageInfo.user),
         ),
       child: this,
     );

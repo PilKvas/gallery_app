@@ -26,3 +26,4 @@ part 'theme/app_colors.dart';
 part 'theme/light_theme.dart';
 part 'widgets/custom_progress_indicator.dart';
 part 'widgets/no_internet_connection.dart';
+part 'extensions/content_extension.dart';
