@@ -99,6 +99,16 @@ class S {
       args: [],
     );
   }
+
+  /// `There is no photo`
+  String get onSearch {
+    return Intl.message(
+      'There is no photo',
+      name: 'onSearch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

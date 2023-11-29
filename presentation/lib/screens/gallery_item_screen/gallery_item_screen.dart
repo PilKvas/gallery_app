@@ -41,12 +41,10 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        if (state.item?.username != null) ...[
                           Text(
-                            state.item!.username,
+                            state.item?.username ?? '',
                             style: context.styling.textTheme.itemUser,
                           ),
-                        ],
                         Text(
                           DateConverterHelper.convertDate(
                             imageInfo.dateCreate,

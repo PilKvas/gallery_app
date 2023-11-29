@@ -1,13 +1,11 @@
-part of domain;
-
+part of '../domain.dart';
 
 @Freezed(genericArgumentFactories: true)
 class PaginationWrapperModel<T> with _$PaginationWrapperModel<T> {
   const factory PaginationWrapperModel({
-    required final int totalItems,
-    required final int itemsPerPage,
-    required final int countOfPages,
-    @Default([]) final List<T> data,
+    required int totalItems,
+    required int itemsPerPage,
+    required int countOfPages,
+    @Default([]) List<T> data,
   }) = _PaginationWrapperModel;
-
 }

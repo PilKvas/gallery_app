@@ -17,7 +17,7 @@ class ItemImage extends StatelessWidget {
         maxScale: 1.2,
         clipBehavior: Clip.none,
         child: Image.network(
-          imageInfo.image?.name ?? '',
+          AppConst.apiUrlMedia + imageInfo.image!.name,
           fit: BoxFit.cover,
         ),
       ),

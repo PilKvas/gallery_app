@@ -3,5 +3,6 @@
   "newTab": "New",
   "popularTab": "Popular",
   "searchField": "Search",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "onSearch": "There is no photo"
 }

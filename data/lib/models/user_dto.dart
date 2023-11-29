@@ -1,4 +1,4 @@
-part of data;
+part of '../data.dart';
 
 @freezed
 class UserDto with _$UserDto {
@@ -16,4 +16,9 @@ class UserDto with _$UserDto {
   }) = _UserDto;
 
   factory UserDto.fromJson(Map<String, Object?> json) => _$UserDtoFromJson(json);
+
+
+  UserModel mapToModel(){
+    return UserModel(id: id, email: email, enabled: enabled, username: username);
+  }
 }

@@ -25,19 +25,6 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(12),
-            hintText: context.localization.searchField,
-            suffixIcon: const Icon(
-              Icons.search,
-              color: AppColors.subTitleColor,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Padding(

@@ -64,6 +64,7 @@ class _MediaListState extends State<MediaList> {
         controller: _scrollController,
         child: BlocBuilder<GalleryBloc, GalleryState>(
           builder: (context, state) {
+            print(state.item);
             return Column(
               children: [
                 Theme(
@@ -148,7 +149,7 @@ class _MediaListState extends State<MediaList> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          AutoRouter.of(context).push(
+                          context.router.push(
                             GalleryItemRoute(
                               imageInfo: state.item[index],
                             ),
@@ -205,7 +206,7 @@ class _MediaListState extends State<MediaList> {
                           color: Colors.grey,
                         ),
                         Text(
-                          S.of(context).noSearch,
+                          S.of(context).onSearch,
                           style: Theme.of(context).textTheme.searchError,
                         ),
                       ],

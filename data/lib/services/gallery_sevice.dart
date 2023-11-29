@@ -1,4 +1,4 @@
-part of data;
+part of '../data.dart';
 
 @RestApi()
 abstract class GalleryService {
@@ -6,9 +6,9 @@ abstract class GalleryService {
 
   @GET('/api/photos')
   Future<PaginationWrapper<ImageGalleryDTO>> getGallery({
-    @Query('name') String? name,
     @Query('new') required bool isNew,
     @Query('page') required int page,
+    @Query('name') String? name,
     @Query('limit') int limit = ApiConst.limit,
   });
 }
