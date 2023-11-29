@@ -75,4 +75,11 @@ extension CustomTextThemeName on TextTheme {
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
       );
+
+  TextStyle get searchError => const TextStyle(
+        color: Color(0xFFBCBCBC),
+        fontSize: 20,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w600,
+      );
 }

@@ -1,9 +1,12 @@
 library presentation;
 
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -27,3 +30,4 @@ part 'theme/app_colors.dart';
 part 'theme/light_theme.dart';
 part 'widgets/custom_progress_indicator.dart';
 part 'widgets/no_internet_connection.dart';
+part 'helpers/debouncer.dart';

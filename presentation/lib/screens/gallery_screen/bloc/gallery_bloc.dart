@@ -27,6 +27,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     final response = await _fetchDataUseCase.fetchGalleryData(
       isNew: event.isNew,
       page: page,
+      name: event.name,
     );
 
     emit(

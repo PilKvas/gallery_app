@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "newTab": MessageLookupByLibrary.simpleMessage("New"),
+        "noSearch":
+            MessageLookupByLibrary.simpleMessage("There is no pictures."),
         "ohShuks": MessageLookupByLibrary.simpleMessage("oh Shucks"),
         "popularTab": MessageLookupByLibrary.simpleMessage("Popular"),
         "searchField": MessageLookupByLibrary.simpleMessage("Search")

@@ -8,7 +8,6 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<UserBloc>();
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
@@ -33,7 +32,7 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      imageInfo.name,
+                      imageInfo.name ?? '',
                       style: Theme.of(context).textTheme.itemTitle,
                     ),
                     const SizedBox(

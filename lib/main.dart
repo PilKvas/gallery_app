@@ -2,9 +2,11 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/presentation.dart';
 import 'package:presentation/routing/routing.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  initializeDateFormatting();
   initializeDependencies();
   runApp( MyApp());
 }

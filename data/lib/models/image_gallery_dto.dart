@@ -6,7 +6,7 @@ class ImageGalleryDTO with _$ImageGalleryDTO {
 
   const factory ImageGalleryDTO({
     ImageDetailsDTO? image,
-    required String name,
+    String? name,
     required int id,
     required DateTime dateCreate,
     required String description,

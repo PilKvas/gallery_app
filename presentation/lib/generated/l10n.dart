@@ -89,6 +89,16 @@ class S {
       args: [],
     );
   }
+
+  /// `There is no pictures.`
+  String get noSearch {
+    return Intl.message(
+      'There is no pictures.',
+      name: 'noSearch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

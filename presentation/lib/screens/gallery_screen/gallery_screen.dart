@@ -20,24 +20,12 @@ class GalleryScreen extends StatefulWidget {
 
 class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProviderStateMixin {
   late final TabController controller = TabController(length: 2, vsync: this);
+  final TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(12),
-            hintText: S.of(context).searchField,
-            suffixIcon: const Icon(
-              Icons.search,
-              color: Color.fromARGB(255, 237, 89, 146),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Padding(
@@ -74,6 +62,7 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
                     fetchDataUseCase: injection(),
                   )..add(
                       GalleryEvent.galleryListLoaded(
+                        name: textController.text,
                         isNew: index == 0,
                       ),
                     ),

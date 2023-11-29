@@ -2,11 +2,12 @@ part of domain;
 
 
 
+
 @freezed
 class ImageEntity with _$ImageEntity {
   const factory ImageEntity({
     ImageDetails? image,
-    required String name,
+    String? name,
     required int id,
     required DateTime dateCreate,
     required String description,
