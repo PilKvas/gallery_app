@@ -9,6 +9,6 @@ abstract class GalleryService {
     @Query('new') required bool isNew,
     @Query('page') required int page,
     @Query('name') String? name,
-    @Query('limit') int limit = ApiConst.limit,
+    @Default(ApiConst.limit) @Query('limit') int limit,
   });
 }

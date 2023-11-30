@@ -1,15 +1,15 @@
 part of '../../../presentation.dart';
 
-
 class ItemImage extends StatelessWidget {
   final ImageGalleryModel imageInfo;
+
   const ItemImage({required this.imageInfo, super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 3,
+      width: context.screenSize.width,
+      height: context.screenSize.height / 3,
       child: InteractiveViewer(
         scaleFactor: 100,
         panEnabled: false,
@@ -17,8 +17,15 @@ class ItemImage extends StatelessWidget {
         maxScale: 1.2,
         clipBehavior: Clip.none,
         child: Image.network(
-          AppConst.apiUrlMedia + imageInfo.image!.name,
+          '${AppConst.apiUrlMedia}${imageInfo.image?.name}',
           fit: BoxFit.cover,
+          errorBuilder: (context, exception, stackTrace) {
+            return const Icon(
+              Icons.error,
+              color: Colors.red,
+              size: 40,
+            );
+          },
         ),
       ),
     );

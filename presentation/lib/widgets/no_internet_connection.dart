@@ -13,10 +13,10 @@ class NoInternetConnectionWidget extends StatelessWidget {
           height: 40,
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.width,
+          height: context.screenSize.width,
           child: Column(
             children: [
-              SvgPicture.asset('assets/logo.svg'),
+              SvgPicture.asset(AppAssets.webAntLogo),
               const SizedBox(
                 height: 20,
               ),

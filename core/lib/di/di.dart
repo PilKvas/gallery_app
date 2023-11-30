@@ -27,8 +27,8 @@ Future<void> initializeDependencies() async {
         galleryRepository: injection(),
       ),
     )
-    ..registerLazySingleton<LoadUserUseCase>(
-      () => LoadUserUseCase(
+    ..registerLazySingleton<UserUseCase>(
+      () => UserUseCase(
         galleryItemRepository: injection(),
       ),
     );

@@ -1,9 +1,9 @@
 part of '../domain.dart';
 
-class LoadUserUseCase {
+class UserUseCase {
   final UserRepository _galleryItemRepository;
 
-  LoadUserUseCase({required UserRepository galleryItemRepository})
+  UserUseCase({required UserRepository galleryItemRepository})
       : _galleryItemRepository = galleryItemRepository;
 
   Future<UserModel> loadUserData({required String id}) {

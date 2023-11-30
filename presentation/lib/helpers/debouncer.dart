@@ -8,7 +8,7 @@ class Debouncer {
 
   void run(VoidCallback action) {
     _timer?.cancel();
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
+    _timer = Timer(const Duration(milliseconds: 500), action);
   }
 
   void dispose() {
