@@ -40,7 +40,13 @@ app.*.map.json
 
 *.freezed.dart
 *.g.dart
+*_en.dart
+*.auto_mappr.dart
+*.gr.dart
 
+.intl/
+
+.l10n.dart
 
 # Android Studio will place build artifacts here
 /android/app/debug

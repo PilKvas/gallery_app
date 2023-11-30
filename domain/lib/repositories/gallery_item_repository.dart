@@ -1,5 +1,6 @@
 part of domain;
 
-abstract class GalleryItemRepository{
-  Future<UserEntity> getUser();
+abstract class UserRepository{
+  Future<UserModel> getUserInfo({required int id});
+
 }
