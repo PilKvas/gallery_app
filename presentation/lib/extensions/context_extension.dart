@@ -6,5 +6,4 @@ extension ContextExtensions on BuildContext {
   S get localization => S.of(this);
 
   ThemeData get styling => Theme.of(this);
-
 }

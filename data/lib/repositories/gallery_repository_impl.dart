@@ -10,8 +10,8 @@ class GalleryRepositoryImpl implements GalleryRepository {
   Future<PaginationWrapperModel<ImageGalleryModel>> getGallery({
     required bool isNew,
     required int page,
-    String? name,
     required int limit,
+    String? name,
   }) async {
     final galleryItems = await service.getGallery(
       isNew: isNew,

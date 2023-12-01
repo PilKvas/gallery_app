@@ -19,7 +19,7 @@ export 'screens/gallery_screen/gallery.dart';
 
 part 'extensions/enum_status.dart';
 
-part 'helpers/date_converter_helper.dart';
+part 'extensions/date_time_extension.dart';
 
 part 'screens/gallery_item_screen/gallery_item_screen.dart';
 
@@ -41,7 +41,7 @@ part 'widgets/no_internet_connection.dart';
 
 part 'helpers/debouncer.dart';
 
-part 'extensions/content_extension.dart';
+part 'extensions/context_extension.dart';
 
 part 'widgets/base_text_field.dart';
 

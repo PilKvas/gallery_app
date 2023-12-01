@@ -1,7 +1,5 @@
 part of '../data.dart';
 
-
-
 @RestApi()
 abstract class GalleryDetailsService {
   factory GalleryDetailsService(Dio dio) = _GalleryDetailsService;

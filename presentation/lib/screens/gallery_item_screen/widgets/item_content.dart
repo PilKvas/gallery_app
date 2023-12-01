@@ -28,9 +28,7 @@ class ItemContent extends StatelessWidget {
                 style: context.styling.textTheme.itemUser,
               ),
               Text(
-                DateConverterHelper.convertDate(
-                  imageInfo.dateCreate,
-                ),
+                imageInfo.dateCreate.formatDate,
                 style: context.styling.textTheme.itemDate,
               ),
             ],

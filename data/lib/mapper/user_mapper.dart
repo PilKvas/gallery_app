@@ -9,3 +9,4 @@ import 'package:domain/domain.dart';
 ])
 
 class UserMappr extends $UserMappr {}
+

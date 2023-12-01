@@ -52,9 +52,7 @@ class MediaList extends StatelessWidget {
                       );
                     },
                   ),
-                  if (state.status == Status.loading && !state.isPaginating) ...[
-                    const LoadingWidget(),
-                  ],
+
                   if (state.status == Status.success && state.item.isEmpty) ...[
                     const EmptyListWidget(),
                   ],
