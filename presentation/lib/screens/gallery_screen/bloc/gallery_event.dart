@@ -5,5 +5,6 @@ class GalleryEvent with _$GalleryEvent {
   const factory GalleryEvent.galleryListLoaded({
     required bool isNew,
     @Default(false) bool refresh,
+    String? name,
   }) = _GalleryListLoaded;
 }

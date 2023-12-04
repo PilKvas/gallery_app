@@ -1,4 +1,4 @@
-part of data;
+part of '../data.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final UserMappr mapper = UserMappr();
@@ -8,7 +8,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<UserModel> getUserInfo({required int id}) async {
-    final UserDto userInfo = await service.getUser(id: id);
-    return mapper.convert(userInfo);
+    final userInfo = await service.getUser(id: id);
+    return mapper.convert<UserDto, UserModel>(userInfo);
   }
 }

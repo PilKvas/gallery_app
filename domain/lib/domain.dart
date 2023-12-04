@@ -18,4 +18,4 @@ part 'repositories/gallery_repository.dart';
 
 part 'usecases/fetch_data_usecase.dart';
 
-part 'usecases/load_user_usecase.dart';
+part 'usecases/user_usecase.dart';

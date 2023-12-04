@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "newTab": MessageLookupByLibrary.simpleMessage("New"),
         "ohShuks": MessageLookupByLibrary.simpleMessage("oh Shucks"),
+        "onSearch": MessageLookupByLibrary.simpleMessage("There is no photo"),
         "popularTab": MessageLookupByLibrary.simpleMessage("Popular"),
         "searchField": MessageLookupByLibrary.simpleMessage("Search")
       };

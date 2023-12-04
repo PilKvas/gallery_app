@@ -1,22 +1,22 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:presentation/presentation.dart';
-import 'package:presentation/routing/routing.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  initializeDependencies();
-  runApp( MyApp());
+  await initializeDateFormatting();
+  await initializeDependencies();
+  runApp( WebAntGallery());
 }
 
-class MyApp extends StatelessWidget {
+class WebAntGallery extends StatelessWidget {
   final _appRouter = AppRouter();
-   MyApp({super.key});
+   WebAntGallery({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
       theme: lightTheme,
       themeMode: ThemeMode.light,
       routerConfig: _appRouter.config(),

@@ -16,25 +16,29 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     _GalleryListLoaded event,
     Emitter<GalleryState> emit,
   ) async {
-    if (state.noItemsLeft && !event.refresh) return;
+    if (state.hasReachedEnd && !event.refresh) return;
+
     var page = 1 + state.item.length ~/ ApiConst.limit;
+
+    if (event.refresh) page = 1;
 
     emit(
       state.copyWith(status: Status.loading, isPaginating: page != 1),
     );
-    if (event.refresh) page = 1;
 
     final response = await _fetchDataUseCase.fetchGalleryData(
       isNew: event.isNew,
       page: page,
+      name: event.name ?? state.name,
+      limit: ApiConst.limit,
     );
 
     emit(
       state.copyWith(
-        totalItems: response.totalItems,
+        name: event.name ?? state.name,
         status: Status.success,
         item: event.refresh ? response.data : [...state.item, ...response.data],
-        noItemsLeft: response.data.length < ApiConst.limit,
+        hasReachedEnd: response.data.length < ApiConst.limit,
       ),
     );
   }

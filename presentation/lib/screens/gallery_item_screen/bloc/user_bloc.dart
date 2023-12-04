@@ -1,7 +1,7 @@
 part of '../gallery_item.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  final LoadUserUseCase _loadGalleryItemUseCase;
+  final UserUseCase _loadGalleryItemUseCase;
 
   UserBloc(this._loadGalleryItemUseCase) : super(const UserState()) {
     on<_UserEventLoaded>(

@@ -1,6 +1,4 @@
-part of data;
-
-
+part of '../data.dart';
 
 @RestApi()
 abstract class GalleryDetailsService {

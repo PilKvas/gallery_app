@@ -44,9 +44,11 @@ app.*.map.json
 *.auto_mappr.dart
 *.gr.dart
 
-.intl/
 
-.l10n.dart
+presentation/lib/generated/intl/messages_all.dart
+presentation/lib/generated/intl/messages_en.dart
+presentation/lib/generated/l10n.dart
+
 
 # Android Studio will place build artifacts here
 /android/app/debug

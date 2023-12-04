@@ -1,5 +1,7 @@
 library presentation;
 
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
@@ -16,14 +18,39 @@ export 'screens/gallery_item_screen/gallery_item.dart';
 export 'screens/gallery_screen/gallery.dart';
 
 part 'extensions/enum_status.dart';
-part 'helpers/date_converter_helper.dart';
+
+part 'extensions/date_time_extension.dart';
+
 part 'screens/gallery_item_screen/gallery_item_screen.dart';
+
 part 'screens/gallery_item_screen/widgets/item_image.dart';
+
 part 'screens/gallery_screen/gallery_screen.dart';
+
 part 'screens/gallery_screen/widgets/media_list.dart';
+
 part 'screens/home_screen/home_screen.dart';
+
 part 'theme/app_colors.dart';
+
 part 'theme/light_theme.dart';
+
 part 'widgets/custom_progress_indicator.dart';
+
 part 'widgets/no_internet_connection.dart';
-part 'extensions/content_extension.dart';
+
+part 'helpers/debouncer.dart';
+
+part 'extensions/context_extension.dart';
+
+part 'widgets/base_text_field.dart';
+
+part 'screens/gallery_screen/widgets/grid_widget.dart';
+
+part 'screens/gallery_screen/widgets/no_pictures_widget.dart';
+
+part 'screens/gallery_screen/widgets/loading_widget.dart';
+
+part 'screens/gallery_screen/widgets/pagination_loader_widget.dart';
+
+part 'screens/gallery_item_screen/widgets/item_content.dart';

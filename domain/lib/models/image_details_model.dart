@@ -1,4 +1,4 @@
-part of domain;
+part of '../domain.dart';
 
 
 @freezed

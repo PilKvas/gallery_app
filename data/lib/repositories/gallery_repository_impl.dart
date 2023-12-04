@@ -1,4 +1,4 @@
-part of data;
+part of '../data.dart';
 
 class GalleryRepositoryImpl implements GalleryRepository {
   final ImageMapper mapper = ImageMapper();
@@ -7,8 +7,18 @@ class GalleryRepositoryImpl implements GalleryRepository {
   GalleryRepositoryImpl({required this.service});
 
   @override
-  Future<PaginationWrapperModel<ImageGalleryModel>> getGallery({required bool isNew, required int page}) async {
-    final PaginationWrapper<ImageGalleryDTO> galleryItems = await service.getGallery(isNew: isNew, page: page);
+  Future<PaginationWrapperModel<ImageGalleryModel>> getGallery({
+    required bool isNew,
+    required int page,
+    required int limit,
+    String? name,
+  }) async {
+    final galleryItems = await service.getGallery(
+      isNew: isNew,
+      page: page,
+      name: name,
+      limit: limit,
+    );
 
     return PaginationWrapperModel(
       totalItems: galleryItems.totalItems,
