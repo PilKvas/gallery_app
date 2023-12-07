@@ -9,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:presentation/presentation.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -19,7 +18,6 @@ export 'screens/gallery_item_screen/gallery_item.dart';
 export 'screens/gallery_screen/gallery.dart';
 export 'screens/registration_screen/registration.dart';
 
-part 'extensions/enum_status.dart';
 
 part 'extensions/date_time_extension.dart';
 
@@ -77,4 +75,4 @@ part 'extensions/enum_extensions.dart';
 
 part 'widgets/base_snack_bar.dart';
 
-part 'extensions/text_input_formatters.dart';
+

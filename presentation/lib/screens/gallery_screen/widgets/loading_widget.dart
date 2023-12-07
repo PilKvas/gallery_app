@@ -8,7 +8,7 @@ class LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.screenSize.width,
-      height: context.screenSize.height / 4,
+      height: context.screenSize.height * 0.25,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

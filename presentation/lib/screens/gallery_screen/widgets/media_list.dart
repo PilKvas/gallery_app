@@ -39,7 +39,7 @@ class MediaList extends StatelessWidget {
                       AppAssets.searchIcon,
                       fit: BoxFit.none,
                     ),
-                    isErase: true,
+                    showClearIcon: true,
                     isIconPressible: true,
                     onChanged: (text) {
                       bloc.add(
@@ -62,10 +62,10 @@ class MediaList extends StatelessWidget {
                     icon: SvgPicture.asset(AppAssets.searchEraseIcon),
                     filled: true,
                   ),
-                  if (state.status == Status.success && state.item.isEmpty) ...[
+                  if (state.status == Status.success && state.items.isEmpty) ...[
                     const EmptyListWidget(),
                   ],
-                  if (state.item.isNotEmpty) ...[
+                  if (state.items.isNotEmpty) ...[
                     GridWidget(state: state),
                   ],
                   if (state.status == Status.loading && state.isPaginating) ...[

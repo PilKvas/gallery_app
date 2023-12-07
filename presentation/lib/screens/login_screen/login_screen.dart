@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(
-              height: context.screenSize.height / 1.5,
+              height: context.screenSize.height * 0.66,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -45,13 +45,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   BaseTextField(
                     hintText: context.localization.email,
-                    isErase: false,
+                    showClearIcon: false,
                     icon: SvgPicture.asset(AppAssets.mailIcon),
                     filled: false,
                   ),
                   BaseTextField(
                     hintText: context.localization.password,
-                    isErase: false,
+                    showClearIcon: false,
                     icon: SvgPicture.asset(AppAssets.eyeIcon),
                     filled: false,
                     isPassword: true,
@@ -63,14 +63,14 @@ class LoginScreen extends StatelessWidget {
                   FilledButton(
                     onPressed: () {},
                     title: context.localization.signIn,
-                    width: context.screenSize.width / 3,
+                    width: context.screenSize.width * 0.33,
                   ),
                   TextButtonWidget(
                     onPressed: () {
                       context.router.push(const RegistrationRoute());
                     },
                     title: context.localization.signUp,
-                    width: context.screenSize.width / 3,
+                    width: context.screenSize.width * 0.33,
                   ),
                 ],
               ),

@@ -1,7 +1,7 @@
 part of '../presentation.dart';
 
 class BaseTextField extends StatefulWidget {
-  final bool isErase;
+  final bool showClearIcon;
   final Widget icon;
   final bool filled;
   final bool showError;
@@ -24,7 +24,7 @@ class BaseTextField extends StatefulWidget {
 
   const BaseTextField({
     required this.icon,
-    required this.isErase,
+    required this.showClearIcon,
     required this.filled,
     super.key,
     this.border,
@@ -76,6 +76,45 @@ class _BaseTextFieldState extends State<BaseTextField> {
     );
   }
 
+  void clearInput() {
+    _textController.clear();
+    widget.onChanged?.call(_textController.text);
+    widget.onPressed?.call();
+  }
+
+  void showPassword() {
+    setState(() {
+      _isObscured = !_isObscured;
+    });
+  }
+
+  Widget defineIcon() {
+    if (widget.isIconPressible) {
+      if (widget.showClearIcon) {
+        return SvgPicture.asset(
+          AppAssets.searchEraseIcon,
+          color: _isFocused ? AppColors.main : Colors.grey,
+        );
+      } else if (_isObscured) {
+        return SvgPicture.asset(AppAssets.eyeOffIcon);
+      } else {
+        return SvgPicture.asset(AppAssets.eyeIcon);
+      }
+    }
+
+    return widget.icon;
+  }
+
+  void defineIconButton() {
+    if (widget.isIconPressible) {
+      if (widget.showClearIcon) {
+        clearInput();
+      } else {
+        showPassword();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -120,32 +159,8 @@ class _BaseTextFieldState extends State<BaseTextField> {
           prefixIcon: widget.prefixIcon,
           suffixIcon: IconButton(
             splashRadius: 10,
-            icon: widget.isIconPressible
-                ? widget.isErase
-                    ? SvgPicture.asset(
-                        AppAssets.searchEraseIcon,
-                        color: switch (_isFocused) {
-                          true => AppColors.main,
-                          _ => Colors.grey,
-                        },
-                      )
-                    : _isObscured
-                        ? SvgPicture.asset(AppAssets.eyeOffIcon)
-                        : SvgPicture.asset(AppAssets.eyeIcon)
-                : widget.icon,
-            onPressed: widget.isIconPressible
-                ? widget.isErase
-                    ? () {
-                        _textController.clear();
-                        widget.onChanged?.call(_textController.text);
-                        widget.onPressed?.call();
-                      }
-                    : () {
-                        setState(() {
-                          _isObscured = !_isObscured;
-                        });
-                      }
-                : null,
+            icon: defineIcon(),
+            onPressed: defineIconButton,
           ),
           hintText: widget.hintText,
           border: OutlineInputBorder(

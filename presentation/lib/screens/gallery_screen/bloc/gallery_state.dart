@@ -7,6 +7,6 @@ class GalleryState with _$GalleryState {
     @Default(false) bool isPaginating,
     @Default(false) bool hasReachedEnd,
     @Default(Status.loading) Status status,
-    @Default([]) List<ImageGalleryModel> item,
+    @Default([]) List<ImageGalleryModel> items,
   }) = _GalleryState;
 }

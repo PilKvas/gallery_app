@@ -9,7 +9,7 @@ class ItemImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.screenSize.width,
-      height: context.screenSize.height / 3,
+      height: context.screenSize.height * 0.33,
       child: InteractiveViewer(
         scaleFactor: 100,
         panEnabled: false,

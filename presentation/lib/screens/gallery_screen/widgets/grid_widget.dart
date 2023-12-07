@@ -17,12 +17,12 @@ class GridWidget extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 20,
         ),
-        itemCount: state.item.length,
+        itemCount: state.items.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => context.router.push(
               GalleryItemRoute(
-                imageInfo: state.item[index],
+                imageInfo: state.items[index],
               ),
             ),
             child: Padding(
@@ -48,7 +48,7 @@ class GridWidget extends StatelessWidget {
                       Icons.error,
                       color: Colors.red,
                     ),
-                    image: '${AppConst.apiUrlMedia}${state.item[index].image?.name}',
+                    image: '${AppConst.apiUrlMedia}${state.items[index].image?.name}',
                   ),
                 ),
               ),

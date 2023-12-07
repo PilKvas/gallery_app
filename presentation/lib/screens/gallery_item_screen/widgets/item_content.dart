@@ -22,10 +22,12 @@ class ItemContent extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  state.item?.username ?? AppConst.empty,
-                  style: context.styling.textTheme.itemUser,
-                ),
+                if (state.item?.username != null) ...[
+                  Text(
+                    state.item?.username ?? AppConst.empty,
+                    style: context.styling.textTheme.itemUser,
+                  ),
+                ],
                 Text(
                   imageInfo.dateCreate.formatDate,
                   style: context.styling.textTheme.itemDate,

@@ -6,7 +6,7 @@ class EmptyListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenSize.height / 2,
+      height: context.screenSize.height * 0.5,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

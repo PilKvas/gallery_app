@@ -1,5 +1,6 @@
 library registration;
 
+import 'package:core/core.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

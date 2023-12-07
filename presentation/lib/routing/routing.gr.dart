@@ -83,7 +83,8 @@ class GalleryItemRoute extends PageRouteInfo<GalleryItemRouteArgs> {
 
   static const String name = 'GalleryItemRoute';
 
-  static const PageInfo<GalleryItemRouteArgs> page = PageInfo<GalleryItemRouteArgs>(name);
+  static const PageInfo<GalleryItemRouteArgs> page =
+      PageInfo<GalleryItemRouteArgs>(name);
 }
 
 class GalleryItemRouteArgs {

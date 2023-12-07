@@ -90,7 +90,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         BaseTextField(
                           filled: false,
-                          isErase: false,
+                          showClearIcon: false,
                           controller: _userNameController,
                           icon: SvgPicture.asset(AppAssets.userNameIcon),
                           hintText: context.localization.userNameRequired,
@@ -98,7 +98,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         BaseTextField(
                           readOnly: true,
-                          isErase: false,
+                          showClearIcon: false,
                           filled: false,
                           onDateChange: (date) {
                             _birthDate = date;
@@ -108,10 +108,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           icon: SvgPicture.asset(AppAssets.calendarIcon),
                         ),
                         BaseTextField(
-                          isErase: false,
+                          showClearIcon: false,
                           filled: false,
                           inputFormatters: [
-                            InputFormatters.phoneMask,
+                            AppConst.phoneMask,
                           ],
                           keyboardType: TextInputType.phone,
                           controller: _phoneNumberController,
@@ -120,7 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           errorText: state.fields[Fields.phoneNumberField]?.call(context.localization),
                         ),
                         BaseTextField(
-                          isErase: false,
+                          showClearIcon: false,
                           filled: false,
                           controller: _emailController,
                           icon: SvgPicture.asset(AppAssets.mailIcon),
@@ -128,7 +128,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           errorText: state.fields[Fields.emailField]?.call(context.localization),
                         ),
                         BaseTextField(
-                          isErase: false,
+                          showClearIcon: false,
                           filled: false,
                           isPassword: true,
                           isIconPressible: true,
@@ -138,7 +138,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           errorText: state.fields[Fields.passwordField]?.call(context.localization),
                         ),
                         BaseTextField(
-                          isErase: false,
+                          showClearIcon: false,
                           filled: false,
                           isPassword: true,
                           isIconPressible: true,
@@ -163,7 +163,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               );
                             },
                             title: context.localization.signUp,
-                            width: context.screenSize.width / 3,
+                            width: context.screenSize.width * 0.33,
                           ),
                         ),
                         TextButtonWidget(
@@ -173,12 +173,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             );
                           },
                           title: context.localization.signIn,
-                          width: context.screenSize.width / 3,
+                          width: context.screenSize.width * 0.33,
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: context.screenSize.height / 1.2,
+                      height: context.screenSize.height * 0.85,
                       child: Opacity(
                         opacity: state.status == Status.loading ? 1 : 0,
                         child: const LoadingWidget(color: AppColors.main),
