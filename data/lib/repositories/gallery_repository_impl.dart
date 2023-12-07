@@ -1,7 +1,7 @@
 part of '../data.dart';
 
 class GalleryRepositoryImpl implements GalleryRepository {
-  final ImageMapper mapper = ImageMapper();
+  final Mapper mapper = Mapper();
   final GalleryService service;
 
   GalleryRepositoryImpl({required this.service});
@@ -13,6 +13,7 @@ class GalleryRepositoryImpl implements GalleryRepository {
     required int limit,
     String? name,
   }) async {
+
     final galleryItems = await service.getGallery(
       isNew: isNew,
       page: page,

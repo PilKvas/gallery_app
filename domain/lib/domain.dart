@@ -12,10 +12,14 @@ part 'models/pagination_wrapper_model.dart';
 
 part 'models/user_model.dart';
 
-part 'repositories/gallery_item_repository.dart';
+part 'repositories/user_repository.dart';
 
 part 'repositories/gallery_repository.dart';
 
 part 'usecases/fetch_data_usecase.dart';
 
 part 'usecases/user_usecase.dart';
+
+part 'repositories/registration_repository.dart';
+
+part 'usecases/registration_use_case.dart';

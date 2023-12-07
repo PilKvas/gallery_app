@@ -18,7 +18,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
   ) async {
     if (state.hasReachedEnd && !event.refresh) return;
 
-    var page = 1 + state.item.length ~/ ApiConst.limit;
+    var page = 1 + state.item.length ~/ AppConst.limit;
 
     if (event.refresh) page = 1;
 
@@ -30,15 +30,15 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
       isNew: event.isNew,
       page: page,
       name: event.name ?? state.name,
-      limit: ApiConst.limit,
+      limit: AppConst.limit,
     );
 
     emit(
       state.copyWith(
         name: event.name ?? state.name,
         status: Status.success,
+        hasReachedEnd: response.data.length < AppConst.limit,
         item: event.refresh ? response.data : [...state.item, ...response.data],
-        hasReachedEnd: response.data.length < ApiConst.limit,
       ),
     );
   }

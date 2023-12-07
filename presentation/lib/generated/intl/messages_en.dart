@@ -22,11 +22,42 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "WelcomeText":
+            MessageLookupByLibrary.simpleMessage("Welcome to Gallery!"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("I already have an account"),
+        "birthday": MessageLookupByLibrary.simpleMessage("Birthday"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirmFieldValidationText":
+            MessageLookupByLibrary.simpleMessage("Password doesn\'t match"),
+        "confirmPasswordRequired":
+            MessageLookupByLibrary.simpleMessage("Confirm password *"),
+        "createAccount":
+            MessageLookupByLibrary.simpleMessage("Create an account"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "emailRequired": MessageLookupByLibrary.simpleMessage("Email *"),
+        "emailValidationText": MessageLookupByLibrary.simpleMessage(
+            "This field should contain E-Mail in the format example@site.com"),
+        "emptyFieldValidationText":
+            MessageLookupByLibrary.simpleMessage("Required field"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "newTab": MessageLookupByLibrary.simpleMessage("New"),
         "ohShuks": MessageLookupByLibrary.simpleMessage("oh Shucks"),
         "onSearch": MessageLookupByLibrary.simpleMessage("There is no photo"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordRequired": MessageLookupByLibrary.simpleMessage("Password *"),
+        "passwordValidationText": MessageLookupByLibrary.simpleMessage(
+            "This field must contain a password of at least 8 characters long"),
+        "phoneNumberRequired":
+            MessageLookupByLibrary.simpleMessage("Phone number *"),
+        "phoneValidationText": MessageLookupByLibrary.simpleMessage(
+            "This field must contain a number in the format +# (###) ### ### ## ## ##"),
         "popularTab": MessageLookupByLibrary.simpleMessage("Popular"),
-        "searchField": MessageLookupByLibrary.simpleMessage("Search")
+        "registrationSuccessful": MessageLookupByLibrary.simpleMessage(
+            "You have been successfully registered"),
+        "searchField": MessageLookupByLibrary.simpleMessage("Search"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "userNameRequired": MessageLookupByLibrary.simpleMessage("User Name *")
       };
 }

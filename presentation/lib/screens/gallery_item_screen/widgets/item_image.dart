@@ -19,13 +19,11 @@ class ItemImage extends StatelessWidget {
         child: Image.network(
           '${AppConst.apiUrlMedia}${imageInfo.image?.name}',
           fit: BoxFit.cover,
-          errorBuilder: (context, exception, stackTrace) {
-            return const Icon(
-              Icons.error,
-              color: Colors.red,
-              size: 40,
-            );
-          },
+          errorBuilder: (_, __, ___) => const Icon(
+            Icons.error,
+            color: Colors.red,
+            size: 40,
+          ),
         ),
       ),
     );

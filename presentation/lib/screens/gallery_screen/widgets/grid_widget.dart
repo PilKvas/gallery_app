@@ -1,6 +1,5 @@
 part of '../../../presentation.dart';
 
-
 class GridWidget extends StatelessWidget {
   final GalleryState state;
 
@@ -21,13 +20,11 @@ class GridWidget extends StatelessWidget {
         itemCount: state.item.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {
-              context.router.push(
-                GalleryItemRoute(
-                  imageInfo: state.item[index],
-                ),
-              );
-            },
+            onTap: () => context.router.push(
+              GalleryItemRoute(
+                imageInfo: state.item[index],
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(4),
               child: DecoratedBox(
@@ -45,15 +42,13 @@ class GridWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: FadeInImage.memoryNetwork(
-                    imageErrorBuilder: (context, error, trace) {
-                      return const Icon(
-                        Icons.error,
-                        color: Colors.red,
-                      );
-                    },
-                    placeholder: kTransparentImage,
-                    image: '${AppConst.apiUrlMedia}${state.item[index].image?.name}',
                     fit: BoxFit.fill,
+                    placeholder: kTransparentImage,
+                    imageErrorBuilder: (_, __, ___) => const Icon(
+                      Icons.error,
+                      color: Colors.red,
+                    ),
+                    image: '${AppConst.apiUrlMedia}${state.item[index].image?.name}',
                   ),
                 ),
               ),

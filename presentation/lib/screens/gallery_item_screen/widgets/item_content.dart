@@ -17,29 +17,29 @@ class ItemContent extends StatelessWidget {
             imageInfo.name,
             style: context.styling.textTheme.itemTitle,
           ),
-          const SizedBox(
-            height: 10,
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  state.item?.username ?? AppConst.empty,
+                  style: context.styling.textTheme.itemUser,
+                ),
+                Text(
+                  imageInfo.dateCreate.formatDate,
+                  style: context.styling.textTheme.itemDate,
+                ),
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                state.item?.username ?? AppConst.empty,
-                style: context.styling.textTheme.itemUser,
-              ),
-              Text(
-                imageInfo.dateCreate.formatDate,
-                style: context.styling.textTheme.itemDate,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              imageInfo.description,
+              style: context.styling.textTheme.itemDescription,
+            ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            imageInfo.description,
-            style: context.styling.textTheme.itemDescription,
-          )
         ],
       ),
     );

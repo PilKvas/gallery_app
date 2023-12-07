@@ -3,12 +3,12 @@ part of '../presentation.dart';
 class AppColors {
   AppColors._();
 
-  static const hightLightColor = Color(0xFFED5992);
-  static const backgroundColor = Colors.white;
-  static const titleColor = Color.fromARGB(255, 47, 23, 103);
-  static const subTitleColor = Color.fromARGB(255, 140, 140, 140);
-  static const descriptionColor = Color(0xFF4A4A4A);
-  static const navigationButtonColor = Color.fromARGB(255, 47, 23, 103);
-  static const textFieldColor = Color.fromRGBO(238, 238, 239, 1);
-  static const prefixIconColor =Color.fromRGBO(188, 188, 188, 1);
+  static const Color main = Color(0xFFCF497E);
+  static const Color errorRed = Color(0xFFEC3E3E);
+
+  static const Color white = Colors.white;
+  static const Color black = Color(0xFF1D1D1D);
+  static const Color grey = Color(0xFFBCBCBC);
+  static const Color lightGrey = Color(0xFFEEEEEF);
+  static const Color blue = Color(0xFF409EFF);
 }

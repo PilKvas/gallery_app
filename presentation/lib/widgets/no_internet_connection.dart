@@ -16,7 +16,7 @@ class NoInternetConnectionWidget extends StatelessWidget {
           height: context.screenSize.width,
           child: Column(
             children: [
-              SvgPicture.asset(AppAssets.webAntLogo),
+              SvgPicture.asset(AppAssets.webAntErrorLogo),
               const SizedBox(
                 height: 20,
               ),
@@ -34,7 +34,7 @@ class NoInternetConnectionWidget extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

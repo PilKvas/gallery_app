@@ -109,6 +109,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome to Gallery!`
+  String get WelcomeText {
+    return Intl.message(
+      'Welcome to Gallery!',
+      name: 'WelcomeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create an account`
+  String get createAccount {
+    return Intl.message(
+      'Create an account',
+      name: 'createAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I already have an account`
+  String get alreadyHaveAnAccount {
+    return Intl.message(
+      'I already have an account',
+      name: 'alreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Name *`
+  String get userNameRequired {
+    return Intl.message(
+      'User Name *',
+      name: 'userNameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birthday`
+  String get birthday {
+    return Intl.message(
+      'Birthday',
+      name: 'birthday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number *`
+  String get phoneNumberRequired {
+    return Intl.message(
+      'Phone number *',
+      name: 'phoneNumberRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email *`
+  String get emailRequired {
+    return Intl.message(
+      'Email *',
+      name: 'emailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password *`
+  String get passwordRequired {
+    return Intl.message(
+      'Password *',
+      name: 'passwordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password *`
+  String get confirmPasswordRequired {
+    return Intl.message(
+      'Confirm password *',
+      name: 'confirmPasswordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field must contain a password of at least 8 characters long`
+  String get passwordValidationText {
+    return Intl.message(
+      'This field must contain a password of at least 8 characters long',
+      name: 'passwordValidationText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field should contain E-Mail in the format example@site.com`
+  String get emailValidationText {
+    return Intl.message(
+      'This field should contain E-Mail in the format example@site.com',
+      name: 'emailValidationText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field must contain a number in the format +# (###) ### ### ## ## ##`
+  String get phoneValidationText {
+    return Intl.message(
+      'This field must contain a number in the format +# (###) ### ### ## ## ##',
+      name: 'phoneValidationText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required field`
+  String get emptyFieldValidationText {
+    return Intl.message(
+      'Required field',
+      name: 'emptyFieldValidationText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password doesn't match`
+  String get confirmFieldValidationText {
+    return Intl.message(
+      'Password doesn\'t match',
+      name: 'confirmFieldValidationText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have been successfully registered`
+  String get registrationSuccessful {
+    return Intl.message(
+      'You have been successfully registered',
+      name: 'registrationSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

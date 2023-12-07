@@ -34,6 +34,13 @@ class MediaList extends StatelessWidget {
               return Column(
                 children: [
                   BaseTextField(
+                    hintText: context.localization.searchField,
+                    prefixIcon: SvgPicture.asset(
+                      AppAssets.searchIcon,
+                      fit: BoxFit.none,
+                    ),
+                    isErase: true,
+                    isIconPressible: true,
                     onChanged: (text) {
                       bloc.add(
                         GalleryEvent.galleryListLoaded(
@@ -51,8 +58,10 @@ class MediaList extends StatelessWidget {
                         ),
                       );
                     },
+                    fillColor: AppColors.lightGrey,
+                    icon: SvgPicture.asset(AppAssets.searchEraseIcon),
+                    filled: true,
                   ),
-
                   if (state.status == Status.success && state.item.isEmpty) ...[
                     const EmptyListWidget(),
                   ],
