@@ -1,49 +1,49 @@
 part of '../presentation.dart';
 
 class BaseTextField extends StatefulWidget {
-  final VoidCallback? onPressed;
-  final ValueChanged<String>? onChanged;
   final bool isErase;
-  final Widget? prefixIcon;
-  final String? hintText;
-  final Color? fillColor;
-  final TextEditingController? controller;
-  final InputBorder? border;
-  final String? Function(String?)? validator;
-  final bool? readOnly;
-  final String? errorText;
-  final bool showError;
-  final bool isRequired;
   final Widget icon;
   final bool filled;
+  final bool showError;
+  final bool? readOnly;
+  final bool isRequired;
   final bool isPassword;
+  final String? hintText;
+  final Color? fillColor;
+  final String? errorText;
+  final Widget? prefixIcon;
+  final InputBorder? border;
   final bool isIconPressible;
-  final List<TextInputFormatter>? inputFormatters;
+  final VoidCallback? onPressed;
   final TextInputType? keyboardType;
+  final ValueChanged<String>? onChanged;
+  final TextEditingController? controller;
   final ValueChanged<DateTime>? onDateChange;
+  final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatters;
 
   const BaseTextField({
     required this.icon,
     required this.isErase,
     required this.filled,
-    this.isPassword = false,
+    super.key,
+    this.border,
+    this.hintText,
+    this.validator,
     this.fillColor,
-    this.readOnly = false,
     this.errorText,
-    this.showError = false,
-    this.isRequired = false,
     this.onPressed,
     this.onChanged,
-    super.key,
     this.controller,
     this.prefixIcon,
-    this.hintText,
-    this.border,
-    this.validator,
-    this.isIconPressible = false,
-    this.inputFormatters,
     this.keyboardType,
     this.onDateChange,
+    this.inputFormatters,
+    this.readOnly = false,
+    this.showError = false,
+    this.isRequired = false,
+    this.isPassword = false,
+    this.isIconPressible = false,
   });
 
   @override
