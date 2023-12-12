@@ -11,4 +11,3 @@ class ImageDetailsDTO with _$ImageDetailsDTO {
 
   factory ImageDetailsDTO.fromJson(Map<String, Object?> json) => _$ImageDetailsDTOFromJson(json);
 }
-

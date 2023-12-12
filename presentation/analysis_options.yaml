@@ -47,6 +47,7 @@ analyzer:
 linter:
   rules:
     # Const rules.
+    require_trailing_commas: true
     prefer_const_constructors: true
     prefer_const_constructors_in_immutables: true
     prefer_const_declarations: true
@@ -211,7 +212,6 @@ linter:
     provide_deprecation_message: true
     public_member_api_docs: false
     recursive_getters: true
-    require_trailing_commas: false
     secure_pubspec_urls: true
     sized_box_for_whitespace: true
     sized_box_shrink_expand: true

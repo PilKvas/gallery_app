@@ -1,7 +1,7 @@
 part of '../data.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final UserMappr mapper = UserMappr();
+  final Mapper mapper = Mapper();
   final GalleryDetailsService service;
 
   UserRepositoryImpl({required this.service});

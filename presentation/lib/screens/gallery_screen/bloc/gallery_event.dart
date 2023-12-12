@@ -4,7 +4,7 @@ part of '../gallery.dart';
 class GalleryEvent with _$GalleryEvent {
   const factory GalleryEvent.galleryListLoaded({
     required bool isNew,
-    @Default(false) bool refresh,
     String? name,
+    @Default(false) bool refresh,
   }) = _GalleryListLoaded;
 }

@@ -1,13 +1,12 @@
 part of '../../../presentation.dart';
 
-
 class EmptyListWidget extends StatelessWidget {
   const EmptyListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenSize.height - (context.screenSize.height / 2),
+      height: context.screenSize.height * 0.5,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -18,7 +17,7 @@ class EmptyListWidget extends StatelessWidget {
           ),
           Text(
             context.localization.onSearch,
-            style: Theme.of(context).textTheme.searchError,
+            style: context.styling.textTheme.searchError,
           ),
         ],
       ),

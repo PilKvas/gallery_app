@@ -2,13 +2,14 @@ part of '../presentation.dart';
 
 
 class CustomProgressIndicator extends StatelessWidget {
-  const CustomProgressIndicator({super.key});
+  final Color color;
+  const CustomProgressIndicator({super.key, this.color = Colors.grey});
 
   @override
   Widget build(BuildContext context) {
-    return const CircularProgressIndicator(
+    return  CircularProgressIndicator(
       strokeWidth: 0.5,
-      color: Colors.grey,
+      color: color,
     );
   }
 }

@@ -41,7 +41,7 @@ class GalleryItemScreen extends StatelessWidget implements AutoRouteWrapper {
               ItemContent(
                 imageInfo: imageInfo,
                 state: state,
-              )
+              ),
             ],
           );
         },
