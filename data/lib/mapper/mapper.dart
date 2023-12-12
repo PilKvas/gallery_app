@@ -7,5 +7,6 @@ import 'package:domain/domain.dart';
   MapType<ImageGalleryDTO, ImageGalleryModel>(),
   MapType<ImageDetailsDTO, ImageDetailsModel>(),
   MapType<UserDto, UserModel>(),
+  MapType<AuthenticationDto, AuthenticationModel>(),
 ])
 class Mapper extends $Mapper {}

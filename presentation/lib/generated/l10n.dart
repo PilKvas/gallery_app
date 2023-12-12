@@ -309,6 +309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalid username and password combination`
+  String get badRequestText {
+    return Intl.message(
+      'Invalid username and password combination',
+      name: 'badRequestText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

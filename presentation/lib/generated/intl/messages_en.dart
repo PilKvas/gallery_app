@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to Gallery!"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I already have an account"),
+        "badRequestText": MessageLookupByLibrary.simpleMessage(
+            "Invalid username and password combination"),
         "birthday": MessageLookupByLibrary.simpleMessage("Birthday"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirmFieldValidationText":

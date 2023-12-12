@@ -11,12 +11,8 @@ class MediaList extends StatelessWidget {
 
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollInfo) {
-        if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
-          bloc.add(
-            GalleryEvent.galleryListLoaded(
-              isNew: isNew,
-            ),
-          );
+        if (scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent) {
+          bloc.add(GalleryEvent.galleryListLoaded(isNew: isNew));
         }
         return false;
       },
@@ -41,23 +37,19 @@ class MediaList extends StatelessWidget {
                     ),
                     showClearIcon: true,
                     isIconPressible: true,
-                    onChanged: (text) {
-                      bloc.add(
-                        GalleryEvent.galleryListLoaded(
-                          isNew: isNew,
-                          name: text,
-                          refresh: true,
-                        ),
-                      );
-                    },
-                    onPressed: () {
-                      bloc.add(
-                        GalleryEvent.galleryListLoaded(
-                          isNew: isNew,
-                          refresh: true,
-                        ),
-                      );
-                    },
+                    onChanged: (text) => bloc.add(
+                      GalleryEvent.galleryListLoaded(
+                        isNew: isNew,
+                        name: text,
+                        refresh: true,
+                      ),
+                    ),
+                    onPressed: () => bloc.add(
+                      GalleryEvent.galleryListLoaded(
+                        isNew: isNew,
+                        refresh: true,
+                      ),
+                    ),
                     fillColor: AppColors.lightGrey,
                     icon: SvgPicture.asset(AppAssets.searchEraseIcon),
                     filled: true,

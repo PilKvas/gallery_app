@@ -19,12 +19,11 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     if (state.hasReachedEnd && !event.refresh) return;
 
     var page = 1 + state.items.length ~/ AppConst.limit;
-
-    if (event.refresh) page = 1;
-
     emit(
       state.copyWith(status: Status.loading, isPaginating: page != 1),
     );
+
+    if (event.refresh) page = 1;
 
     final response = await _fetchDataUseCase.fetchGalleryData(
       isNew: event.isNew,

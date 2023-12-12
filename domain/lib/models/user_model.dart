@@ -14,9 +14,3 @@ class UserModel with _$UserModel {
     @Default([]) List<Role> roles,
   }) = _UserModel;
 }
-
-
-enum Role {
-  @JsonValue('ROLE_USER')
-  user
-}

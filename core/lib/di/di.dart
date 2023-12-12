@@ -3,15 +3,23 @@ part of '../core.dart';
 GetIt injection = GetIt.I;
 
 Future<void> initializeDependencies() async {
-  final dio = Dio(BaseOptions(baseUrl: AppConst.apiUrl));
+  final dio = Dio(
+    BaseOptions(baseUrl: AppConst.apiUrl),
+  );
 
-  dio.interceptors.add(MiddlewareInterceptor());
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   final serviceGalleryList = GalleryService(dio);
 
-  final serviceGalleryItem = GalleryDetailsService(dio);
+  final serviceRegistration = UserService(dio);
 
-  final serviceRegistration = RegistrationService(dio);
+  final serviceAuthentication = AuthenticationService(dio);
+
+  const storage = FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
 
   injection
     ..registerLazySingleton<GalleryRepository>(
@@ -21,7 +29,7 @@ Future<void> initializeDependencies() async {
     )
     ..registerLazySingleton<UserRepository>(
       () => UserRepositoryImpl(
-        service: serviceGalleryItem,
+        service: serviceRegistration,
       ),
     )
     ..registerLazySingleton<FetchDataUseCase>(
@@ -35,11 +43,37 @@ Future<void> initializeDependencies() async {
       ),
     )
     ..registerLazySingleton<RegistrationRepository>(
-      () => RegisterRepositoryImpl(service: serviceRegistration),
+      () => RegisterRepositoryImpl(
+        service: serviceRegistration,
+      ),
     )
     ..registerLazySingleton<RegistrationUseCase>(
       () => RegistrationUseCase(
         repository: injection(),
       ),
+    )
+    ..registerLazySingleton<AuthenticationRepository>(
+      () => AuthenticationRepositoryImpl(
+        service: serviceAuthentication,
+      ),
+    )
+    ..registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        secureStorage: storage,
+        sharedPreferences: sharedPreferences,
+      ),
+    )
+    ..registerLazySingleton<AuthenticationUseCase>(
+      () => AuthenticationUseCase(
+        authRepository: injection(),
+        securityStorage: injection(),
+      ),
     );
+
+  dio.interceptors.add(
+    MiddlewareInterceptor(
+      storageRepository: injection(),
+      authenticationRepository: injection(),
+    ),
+  );
 }

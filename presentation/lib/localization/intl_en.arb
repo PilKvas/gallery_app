@@ -24,5 +24,6 @@
   "phoneValidationText": "This field must contain a number in the format +# (###) ### ### ## ## ##",
   "emptyFieldValidationText": "Required field",
   "confirmFieldValidationText": "Password doesn't match",
-  "registrationSuccessful": "You have been successfully registered"
+  "registrationSuccessful": "You have been successfully registered",
+  "badRequestText": "Invalid username and password combination"
 }

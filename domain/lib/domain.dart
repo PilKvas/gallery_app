@@ -1,5 +1,6 @@
 library domain;
 
+import 'package:core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'domain.freezed.dart';
@@ -23,3 +24,11 @@ part 'usecases/user_usecase.dart';
 part 'repositories/registration_repository.dart';
 
 part 'usecases/registration_use_case.dart';
+
+part 'repositories/authentication_repository.dart';
+
+part 'models/authentication_model.dart';
+
+part 'usecases/authentication_usecase.dart';
+
+part 'repositories/settings_repository.dart';

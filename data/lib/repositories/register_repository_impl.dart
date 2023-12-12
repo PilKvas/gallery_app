@@ -2,7 +2,7 @@ part of '../data.dart';
 
 class RegisterRepositoryImpl implements RegistrationRepository {
   final Mapper mapper = Mapper();
-  final RegistrationService service;
+  final UserService service;
 
   RegisterRepositoryImpl({required this.service});
 
@@ -25,6 +25,13 @@ class RegisterRepositoryImpl implements RegistrationRepository {
     );
 
     final user = await service.registerUser(request: userDto);
+
+    return mapper.convert<UserDto, UserModel>(user);
+  }
+
+  @override
+  Future<UserModel> getCurrentUser() async {
+    final user = await service.getCurrentUser();
 
     return mapper.convert<UserDto, UserModel>(user);
   }

@@ -9,4 +9,6 @@ abstract class RegistrationRepository {
     String? fullName,
     DateTime? birthday,
   });
+
+  Future<UserModel> getCurrentUser();
 }
