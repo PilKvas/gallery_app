@@ -5,11 +5,9 @@ class AppConst {
 
   static const apiUrlMedia = 'https://gallery.prod1.webant.ru/media/';
 
+  static const int limit = 10;
+
   static const empty = '';
-}
 
-
-
-class AppAssets{
-  static const webAntLogo = 'assets/logo.svg';
+  static const regExpEmail = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
 }

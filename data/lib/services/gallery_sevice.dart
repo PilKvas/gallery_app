@@ -6,9 +6,9 @@ abstract class GalleryService {
 
   @GET('/api/photos')
   Future<PaginationWrapper<ImageGalleryDTO>> getGallery({
-    @Query('new') required bool isNew,
     @Query('page') required int page,
+    @Query('new') required bool isNew,
+    @Default(AppConst.limit) @Query('limit') required int limit,
     @Query('name') String? name,
-    @Default(ApiConst.limit) @Query('limit') int limit,
   });
 }

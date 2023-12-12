@@ -7,11 +7,11 @@ final lightTheme = ThemeData(
     elevation: 0,
   ),
   tabBarTheme: const TabBarTheme(
-    indicatorColor: AppColors.hightLightColor,
+    indicatorColor: AppColors.main,
     labelColor: Colors.black,
-    unselectedLabelColor: AppColors.subTitleColor,
+    unselectedLabelColor: AppColors.grey,
     unselectedLabelStyle: TextStyle(
-      color: AppColors.subTitleColor,
+      color: AppColors.grey,
       fontSize: 20,
       fontFamily: 'SF Pro Display',
       fontWeight: FontWeight.w500,
@@ -27,14 +27,14 @@ final lightTheme = ThemeData(
 
 extension CustomTextThemeName on TextTheme {
   TextStyle get errorTitle => const TextStyle(
-        color: AppColors.titleColor,
+        color: AppColors.black,
         fontSize: 20,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w500,
       );
 
   TextStyle get errorSubtitle => const TextStyle(
-        color: AppColors.subTitleColor,
+        color: AppColors.grey,
         fontSize: 12,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
@@ -49,21 +49,14 @@ extension CustomTextThemeName on TextTheme {
       );
 
   TextStyle get itemUser => const TextStyle(
-        color: Color(0xFFBCBCBC),
+        color: AppColors.grey,
         fontSize: 16,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
       );
 
-  TextStyle get itemRolePlay => const TextStyle(
-        color: Colors.white,
-        fontSize: 12,
-        fontFamily: 'SF Pro Display',
-        fontWeight: FontWeight.w400,
-      );
-
   TextStyle get itemDate => const TextStyle(
-        color: Color(0xFFBCBCBC),
+        color: AppColors.grey,
         fontSize: 16,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
@@ -77,9 +70,23 @@ extension CustomTextThemeName on TextTheme {
       );
 
   TextStyle get searchError => const TextStyle(
-        color: Color(0xFFBCBCBC),
+        color: AppColors.grey,
         fontSize: 20,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w600,
+      );
+
+  TextStyle get onBoardingTitle => const TextStyle(
+        color: AppColors.black,
+        fontSize: 30,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w700,
+      );
+
+  TextStyle get authorizationTitle => const TextStyle(
+        color: AppColors.black,
+        fontSize: 30,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w700,
       );
 }

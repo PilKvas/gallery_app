@@ -1,19 +1,20 @@
 part of '../../../presentation.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({super.key});
+  final Color color;
+  const LoadingWidget({required this.color, super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.screenSize.width,
-      height: context.screenSize.height - (context.screenSize.height / 4),
+      height: context.screenSize.height * 0.25,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CustomProgressIndicator(),
-            Text(S.of(context).loading),
+            CustomProgressIndicator(color: color),
+            Text(context.localization.loading),
           ],
         ),
       ),
