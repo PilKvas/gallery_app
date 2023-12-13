@@ -3,6 +3,7 @@ library data;
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:auto_mappr_annotation/auto_mappr_annotation.dart';
 import 'package:core/core.dart';
 import 'package:data/mapper/mapper.dart';
 import 'package:dio/dio.dart';
