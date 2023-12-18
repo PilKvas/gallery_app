@@ -1,9 +1,9 @@
 part of '../domain.dart';
 
 class RegistrationUseCase {
-  final RegistrationRepository _repository;
+  final UserRepository _repository;
 
-  RegistrationUseCase({required RegistrationRepository repository}) : _repository = repository;
+  RegistrationUseCase({required UserRepository repository}) : _repository = repository;
 
   Future<UserModel> registerUser({
     required String userName,
@@ -13,7 +13,7 @@ class RegistrationUseCase {
     String? fullName,
     DateTime? birthday,
   }) {
-    return _repository.registerUser(
+    return _repository.registrateUser(
       phoneNumber: phoneNumber,
       userName: userName,
       email: email,

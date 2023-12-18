@@ -3,9 +3,11 @@ import 'package:data/data.dart';
 import 'package:data/mapper/mapper.auto_mappr.dart';
 import 'package:domain/domain.dart';
 
+
 @AutoMappr([
   MapType<ImageGalleryDTO, ImageGalleryModel>(),
   MapType<ImageDetailsDTO, ImageDetailsModel>(),
   MapType<UserDto, UserModel>(),
+  MapType<AuthenticationDto, AuthenticationModel>(),
 ])
 class Mapper extends $Mapper {}

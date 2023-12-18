@@ -20,7 +20,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       return emit(state.copyWith(status: Status.success));
     }
 
-    final response = await _loadGalleryItemUseCase.loadUserData(id: event.id!);
+    final response = await _loadGalleryItemUseCase.loadUserData(uri: event.id!);
     emit(
       state.copyWith(
         status: Status.success,

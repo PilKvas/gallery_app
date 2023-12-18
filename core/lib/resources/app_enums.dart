@@ -1,4 +1,30 @@
-part of '../presentation.dart';
+part of '../core.dart';
+
+enum Role {
+  @JsonValue('ROLE_USER')
+  user
+}
+
+enum GrantType {
+  @JsonValue('refresh_token')
+  refreshToken,
+  @JsonValue('password')
+  password,
+}
+
+enum ErrorState {
+  badRequest,
+  forbidden,
+  notFound,
+  conflict,
+  unauthorized,
+  serverUnavailable,
+  serverTemporaryUnavailable,
+  noInternetConnection,
+  duplicate,
+  timeOut,
+  unknown
+}
 
 enum Status {
   initial,

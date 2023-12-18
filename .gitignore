@@ -54,3 +54,8 @@ presentation/lib/generated/l10n.dart
 /android/app/debug
 /android/app/profile
 /android/app/release
+mapper.auto_mappr.dart
+routing.gr.dart
+messages_all.dart
+messages_en.dart
+l10n.dart

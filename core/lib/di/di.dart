@@ -3,29 +3,40 @@ part of '../core.dart';
 GetIt injection = GetIt.I;
 
 Future<void> initializeDependencies() async {
-  final dio = Dio(BaseOptions(baseUrl: AppConst.apiUrl));
+  final dio = Dio(
+    BaseOptions(baseUrl: AppConst.apiUrl),
+  );
 
-  dio.interceptors.add(MiddlewareInterceptor());
+  final sharedPreferences = await SharedPreferences.getInstance();
 
-  final serviceGalleryList = GalleryService(dio);
-
-  final serviceGalleryItem = GalleryDetailsService(dio);
-
-  final serviceRegistration = RegistrationService(dio);
+  const storage = FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
 
   injection
+    ..registerLazySingleton<AuthenticationService>(
+      () => AuthenticationService(dio),
+    )
+    ..registerLazySingleton<UserService>(
+      () => UserService(dio),
+    )
+    ..registerLazySingleton<GalleryService>(
+      () => GalleryService(dio),
+    )
     ..registerLazySingleton<GalleryRepository>(
       () => GalleryRepositoryImpl(
-        service: serviceGalleryList,
+        service: injection(),
       ),
     )
     ..registerLazySingleton<UserRepository>(
       () => UserRepositoryImpl(
-        service: serviceGalleryItem,
+        service: injection(),
       ),
     )
-    ..registerLazySingleton<FetchDataUseCase>(
-      () => FetchDataUseCase(
+    ..registerLazySingleton<GalleryUseCase>(
+      () => GalleryUseCase(
         galleryRepository: injection(),
       ),
     )
@@ -34,12 +45,33 @@ Future<void> initializeDependencies() async {
         galleryItemRepository: injection(),
       ),
     )
-    ..registerLazySingleton<RegistrationRepository>(
-      () => RegisterRepositoryImpl(service: serviceRegistration),
-    )
     ..registerLazySingleton<RegistrationUseCase>(
       () => RegistrationUseCase(
         repository: injection(),
       ),
+    )
+    ..registerLazySingleton<AuthenticationRepository>(
+      () => AuthenticationRepositoryImpl(
+        service: injection(),
+      ),
+    )
+    ..registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        secureStorage: storage,
+        sharedPreferences: sharedPreferences,
+      ),
+    )
+    ..registerLazySingleton<AuthenticationUseCase>(
+      () => AuthenticationUseCase(
+        authRepository: injection(),
+        securityStorage: injection(),
+      ),
     );
+
+  dio.interceptors.add(
+    MiddlewareInterceptor(
+      storageRepository: injection(),
+      authenticationRepository: injection(),
+    ),
+  );
 }
