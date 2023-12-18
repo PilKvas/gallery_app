@@ -1,16 +1,26 @@
 part of '../data.dart';
 
 class MiddlewareInterceptor extends Interceptor {
+  final AuthenticationRepository _authenticationRepository;
+  final SettingsRepository _storageRepository;
+
+  MiddlewareInterceptor({
+    required AuthenticationRepository authenticationRepository,
+    required SettingsRepository storageRepository,
+  })  : _storageRepository = storageRepository,
+        _authenticationRepository = authenticationRepository;
+
   @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
+
     switch (err.response?.statusCode) {
       case 400:
-        final validationList = ValidationErrorHelps.getErrorList(err);
+        final validationList = ValidationErrorHelper.getErrorList(err);
         handler.reject(
           BadRequest(validationError: validationList, requestOptions: err.requestOptions),
         );
       case 401:
-        break;
+        await refreshToken(err.requestOptions, handler);
       case 403:
         handler.reject(Forbidden(requestOptions: err.requestOptions));
       case 404:
@@ -24,12 +34,40 @@ class MiddlewareInterceptor extends Interceptor {
     }
   }
 
+  Future<void> refreshToken(RequestOptions options, ErrorInterceptorHandler handler) async {
+    final refreshToken = await _storageRepository.getRefreshToken();
+
+    if (refreshToken != null) {
+      final response = await _authenticationRepository.refreshToken(
+        refreshToken: refreshToken,
+      );
+      if (response != null) {
+        await _storageRepository.saveTokens(model: response);
+
+        options.headers['Authorization'] = 'Bearer ${response.accessToken}';
+
+        final request = await Dio().fetch(options);
+
+        return handler.resolve(request);
+      }
+    }
+
+    return handler.reject(
+      Unauthorized(requestOptions: options),
+    );
+  }
+
   @override
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (!(await ConnectivityHelper.hasConnection())) {
       return handler.reject(
         NoInternetConnection(requestOptions: options),
       );
+    }
+    final accessToken = await _storageRepository.getAccessToken();
+
+    if (accessToken != null) {
+      options.headers.putIfAbsent('Authorization', () => 'Bearer $accessToken');
     }
 
     return handler.next(options);

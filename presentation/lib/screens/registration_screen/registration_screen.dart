@@ -50,6 +50,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: ListView(
           children: [
             BlocConsumer<RegistrationBloc, RegistrationState>(
+              buildWhen: (old, current) => old.fields != current.fields,
               listener: (context, state) {
                 if (state.status == Status.success) {
                   context.router.replace(
@@ -167,11 +168,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                         ),
                         TextButtonWidget(
-                          onPressed: () {
-                            context.router.push(
-                              const LoginRoute(),
-                            );
-                          },
+                          onPressed: () => context.router.push(
+                            const LoginRoute(),
+                          ),
                           title: context.localization.signIn,
                           width: context.screenSize.width * 0.33,
                         ),

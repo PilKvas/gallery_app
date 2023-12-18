@@ -1,5 +1,6 @@
 part of '../data.dart';
 
+
 @RestApi()
 abstract class RegistrationService {
   factory RegistrationService(Dio dio) = _RegistrationService;
