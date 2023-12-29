@@ -23,27 +23,7 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TabBar(
-              controller: controller,
-              indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
-              tabs: [
-                Tab(
-                  text: context.localization.newTab,
-                ),
-                Tab(
-                  text: context.localization.popularTab,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return BaseScaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -51,25 +31,39 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
             left: 15,
             right: 15,
           ),
-          child: TabBarView(
-            controller: controller,
-            children: List.generate(
-              2,
-              (index) {
-                return BlocProvider(
-                  create: (_) => GalleryBloc(
-                    fetchDataUseCase: injection(),
-                  )..add(
-                      GalleryEvent.galleryListLoaded(
-                        isNew: index == 0,
-                      ),
-                    ),
-                  child: MediaList(
-                    isNew: index == 0,
+          child: Column(
+            children: [
+              TabBar(
+                controller: controller,
+                indicatorColor: context.styling.tabBarTheme.indicatorColor,
+                tabs: [
+                  Tab(text: context.localization.newTab),
+                  Tab(text: context.localization.popularTab),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: controller,
+                  children: List.generate(
+                    2,
+                    (index) {
+                      return BlocProvider(
+                        create: (_) => GalleryBloc(
+                          fetchDataUseCase: injection(),
+                        )..add(
+                            GalleryEvent.galleryListLoaded(
+                              isNew: index == 0,
+                            ),
+                          ),
+                        child: MediaList(
+                          isNew: index == 0,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

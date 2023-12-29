@@ -30,3 +30,6 @@ part 'models/authentication_model.dart';
 part 'usecases/authentication_usecase.dart';
 
 part 'repositories/settings_repository.dart';
+
+part 'repositories/cached_user_repository.dart';
+

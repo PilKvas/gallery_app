@@ -15,7 +15,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     final item = await service.authenticateUser(
       request: RefreshToken(
         grantType: GrantType.password,
-        userName: userName,
+        username: userName,
         password: password,
         refreshToken: refreshToken,
       ),
@@ -27,10 +27,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
   Future<AuthenticationModel> refreshToken({required String refreshToken}) async {
     final item = await service.authenticateUser(
-        request: RefreshToken(
-      grantType: GrantType.refreshToken,
-      refreshToken: refreshToken,
-    ));
+      request: RefreshToken(
+        grantType: GrantType.refreshToken,
+        refreshToken: refreshToken,
+      ),
+    );
 
     return mapper.convert<AuthenticationDto, AuthenticationModel>(item);
   }

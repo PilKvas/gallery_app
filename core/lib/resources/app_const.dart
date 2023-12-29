@@ -17,6 +17,8 @@ class AppConst {
 
   static const key = 'hasRunBefore';
 
+  static const userKey = 'user';
+
   static const int limit = 10;
 
   static const empty = '';

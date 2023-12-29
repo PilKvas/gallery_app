@@ -3,10 +3,10 @@ part of '../login.dart';
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final AuthenticationUseCase authUseCase;
 
-  AuthenticationBloc({required this.authUseCase}) : super(const AuthenticationState()) {
-    on<_LogIn>(
-      _onAuthenticate,
-    );
+  AuthenticationBloc({
+    required this.authUseCase,
+  }) : super(const AuthenticationState()) {
+    on<_LogIn>(_onAuthenticate);
   }
 
   Future<void> _onAuthenticate(
@@ -20,18 +20,18 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
       final error = <Fields, FieldsError>{
         ...?ValidationHelper.validateUserName(event.userName),
         ...?ValidationHelper.validatePassword(event.password),
-      }.map((key, value) => MapEntry(key, value.getLocalizedTitle));
+      }.map(
+        (key, value) => MapEntry(key, value.getLocalizedTitle),
+      );
 
       if (error.isNotEmpty) {
-        emit(
+        return emit(
           state.copyWith(
             status: Status.failure,
             fields: error,
             error: ErrorState.unknown,
           ),
         );
-
-        return;
       }
 
       await authUseCase.authenticateUser(

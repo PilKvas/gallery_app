@@ -22,7 +22,17 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   @override
-  Future<void> deleteTokens() async {
+  Future<void> deleteAccessToken() async {
+    await _secureStorage.delete(key: AppConst.accessTokenStorageKey);
+  }
+
+  @override
+  Future<void> deleteRefreshToken() async {
+    await _secureStorage.delete(key: AppConst.refreshTokenStorageKey);
+  }
+
+  @override
+  Future<void> deleteAllTokens() async {
     await _secureStorage.deleteAll();
   }
 

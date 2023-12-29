@@ -58,7 +58,11 @@ class MediaList extends StatelessWidget {
                     const EmptyListWidget(),
                   ],
                   if (state.items.isNotEmpty) ...[
-                    GridWidget(state: state),
+                    GridWidget(
+                      state: state,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount: 2,
+                    ),
                   ],
                   if (state.status == Status.loading && state.isPaginating) ...[
                     const PaginationLoaderWidget(),

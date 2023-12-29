@@ -118,11 +118,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        top: 20,
-        left: 10,
-        right: 10,
-      ),
+      padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
         onTap: () async {
           if (widget.onDateChange != null) {
@@ -179,7 +175,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime(2100),
+      lastDate: DateTime.now(),
     );
 
     if (date != null) {

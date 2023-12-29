@@ -43,7 +43,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     final bloc = context.read<RegistrationBloc>();
 
-    return Scaffold(
+    return BaseScaffold(
       appBar: const BaseAppBar(),
       body: SizedBox(
         width: context.screenSize.width,
@@ -56,7 +56,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   context.router.replace(
                     const LoginRoute(),
                   );
-                  BaseSnackBar.showBaseSnackBar(context);
+                  BaseSnackBar.showBaseSnackBar(
+                    context,
+                    context.localization.registrationSuccessful,
+                  );
                 }
               },
               builder: (context, state) {
@@ -89,64 +92,71 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                           ),
                         ),
-                        BaseTextField(
-                          filled: false,
-                          showClearIcon: false,
-                          controller: _userNameController,
-                          icon: SvgPicture.asset(AppAssets.userNameIcon),
-                          hintText: context.localization.userNameRequired,
-                          errorText: state.fields[Fields.userNameField]?.call(context.localization),
-                        ),
-                        BaseTextField(
-                          readOnly: true,
-                          showClearIcon: false,
-                          filled: false,
-                          onDateChange: (date) {
-                            _birthDate = date;
-                          },
-                          controller: _birthDateController,
-                          hintText: context.localization.birthday,
-                          icon: SvgPicture.asset(AppAssets.calendarIcon),
-                        ),
-                        BaseTextField(
-                          showClearIcon: false,
-                          filled: false,
-                          inputFormatters: [
-                            AppConst.phoneMask,
-                          ],
-                          keyboardType: TextInputType.phone,
-                          controller: _phoneNumberController,
-                          icon: SvgPicture.asset(AppAssets.phoneIcon),
-                          hintText: context.localization.phoneNumberRequired,
-                          errorText: state.fields[Fields.phoneNumberField]?.call(context.localization),
-                        ),
-                        BaseTextField(
-                          showClearIcon: false,
-                          filled: false,
-                          controller: _emailController,
-                          icon: SvgPicture.asset(AppAssets.mailIcon),
-                          hintText: context.localization.emailRequired,
-                          errorText: state.fields[Fields.emailField]?.call(context.localization),
-                        ),
-                        BaseTextField(
-                          showClearIcon: false,
-                          filled: false,
-                          isPassword: true,
-                          isIconPressible: true,
-                          controller: _passwordController,
-                          icon: SvgPicture.asset(AppAssets.eyeIcon),
-                          hintText: context.localization.passwordRequired,
-                          errorText: state.fields[Fields.passwordField]?.call(context.localization),
-                        ),
-                        BaseTextField(
-                          showClearIcon: false,
-                          filled: false,
-                          isPassword: true,
-                          isIconPressible: true,
-                          controller: _confirmPasswordController,
-                          icon: SvgPicture.asset(AppAssets.eyeIcon),
-                          hintText: context.localization.confirmPasswordRequired,
-                          errorText: state.fields[Fields.confirmField]?.call(context.localization),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            children: [
+                              BaseTextField(
+                                filled: false,
+                                showClearIcon: false,
+                                controller: _userNameController,
+                                icon: SvgPicture.asset(AppAssets.userNameIcon),
+                                hintText: context.localization.userNameRequired,
+                                errorText: state.fields[Fields.userNameField]?.call(context.localization),
+                              ),
+                              BaseTextField(
+                                readOnly: true,
+                                showClearIcon: false,
+                                filled: false,
+                                onDateChange: (date) {
+                                  _birthDate = date;
+                                },
+                                controller: _birthDateController,
+                                hintText: context.localization.birthday,
+                                icon: SvgPicture.asset(AppAssets.calendarIcon),
+                              ),
+                              BaseTextField(
+                                showClearIcon: false,
+                                filled: false,
+                                inputFormatters: [
+                                  AppConst.phoneMask,
+                                ],
+                                keyboardType: TextInputType.phone,
+                                controller: _phoneNumberController,
+                                icon: SvgPicture.asset(AppAssets.phoneIcon),
+                                hintText: context.localization.phoneNumberRequired,
+                                errorText: state.fields[Fields.phoneNumberField]?.call(context.localization),
+                              ),
+                              BaseTextField(
+                                showClearIcon: false,
+                                filled: false,
+                                controller: _emailController,
+                                icon: SvgPicture.asset(AppAssets.mailIcon),
+                                hintText: context.localization.emailRequired,
+                                errorText: state.fields[Fields.emailField]?.call(context.localization),
+                              ),
+                              BaseTextField(
+                                showClearIcon: false,
+                                filled: false,
+                                isPassword: true,
+                                isIconPressible: true,
+                                controller: _passwordController,
+                                icon: SvgPicture.asset(AppAssets.eyeIcon),
+                                hintText: context.localization.passwordRequired,
+                                errorText: state.fields[Fields.passwordField]?.call(context.localization),
+                              ),
+                              BaseTextField(
+                                showClearIcon: false,
+                                filled: false,
+                                isPassword: true,
+                                isIconPressible: true,
+                                controller: _confirmPasswordController,
+                                icon: SvgPicture.asset(AppAssets.eyeIcon),
+                                hintText: context.localization.confirmPasswordRequired,
+                                errorText: state.fields[Fields.confirmField]?.call(context.localization),
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 40),
@@ -167,7 +177,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             width: context.screenSize.width * 0.33,
                           ),
                         ),
-                        TextButtonWidget(
+                        BaseTextButton(
                           onPressed: () => context.router.push(
                             const LoginRoute(),
                           ),

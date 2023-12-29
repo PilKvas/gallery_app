@@ -8,5 +8,6 @@ class GalleryState with _$GalleryState {
     @Default(false) bool hasReachedEnd,
     @Default(Status.loading) Status status,
     @Default([]) List<ImageGalleryModel> items,
+    UserModel? user,
   }) = _GalleryState;
 }

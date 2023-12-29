@@ -7,6 +7,7 @@ import 'package:domain/domain.dart';
 @AutoMappr([
   MapType<ImageGalleryDTO, ImageGalleryModel>(),
   MapType<ImageDetailsDTO, ImageDetailsModel>(),
+  MapType<UserModel, UserDto>(),
   MapType<UserDto, UserModel>(),
   MapType<AuthenticationDto, AuthenticationModel>(),
 ])

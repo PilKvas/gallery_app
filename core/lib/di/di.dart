@@ -25,6 +25,9 @@ Future<void> initializeDependencies() async {
     ..registerLazySingleton<GalleryService>(
       () => GalleryService(dio),
     )
+    ..registerLazySingleton<CachedUserRepository>(
+      () => CachedUserRepositoryImpl(secureStorage: storage),
+    )
     ..registerLazySingleton<GalleryRepository>(
       () => GalleryRepositoryImpl(
         service: injection(),
@@ -42,7 +45,8 @@ Future<void> initializeDependencies() async {
     )
     ..registerLazySingleton<UserUseCase>(
       () => UserUseCase(
-        galleryItemRepository: injection(),
+        userRepository: injection(),
+        cachedUserRepository: injection(),
       ),
     )
     ..registerLazySingleton<RegistrationUseCase>(
@@ -65,6 +69,8 @@ Future<void> initializeDependencies() async {
       () => AuthenticationUseCase(
         authRepository: injection(),
         securityStorage: injection(),
+        userRepository: injection(),
+        cachedUserRepository: injection(),
       ),
     );
 
