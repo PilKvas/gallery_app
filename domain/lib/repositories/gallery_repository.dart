@@ -4,7 +4,8 @@ abstract class GalleryRepository {
   Future<PaginationWrapperModel<ImageGalleryModel>> getGallery({
     required int page,
     required int limit,
-    required bool isNew,
+    int? id,
+    bool? isNew,
     String? name,
   });
 }

@@ -2,19 +2,21 @@ part of '../../../presentation.dart';
 
 class GridWidget extends StatelessWidget {
   final GalleryState state;
+  final int crossAxisCount;
+  final ScrollPhysics? physics;
 
-  const GridWidget({required this.state, super.key});
+  const GridWidget({required this.state, required this.crossAxisCount, super.key, this.physics});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
+        physics: physics,
         shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 20,
-          crossAxisCount: 2,
+          crossAxisCount: crossAxisCount,
           crossAxisSpacing: 20,
         ),
         itemCount: state.items.length,

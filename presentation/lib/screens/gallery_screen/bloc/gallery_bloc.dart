@@ -3,8 +3,9 @@ part of '../gallery.dart';
 class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
   final GalleryUseCase _fetchDataUseCase;
 
-  GalleryBloc({required GalleryUseCase fetchDataUseCase})
-      : _fetchDataUseCase = fetchDataUseCase,
+  GalleryBloc({
+    required GalleryUseCase fetchDataUseCase,
+  })  : _fetchDataUseCase = fetchDataUseCase,
         super(const GalleryState()) {
     on<_GalleryListLoaded>(
       _onLoadImages,
@@ -26,10 +27,11 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     if (event.refresh) page = 1;
 
     final response = await _fetchDataUseCase.getGalleryData(
+      id: event.id,
       isNew: event.isNew,
       page: page,
       name: event.name ?? state.name,
-      limit: AppConst.limit,
+      limit: event.limit ?? AppConst.limit,
     );
 
     emit(

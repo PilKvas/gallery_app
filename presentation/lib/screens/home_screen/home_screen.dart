@@ -9,8 +9,8 @@ class HomeScreen extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         GalleryStackRoute(),
-        GalleryRoute(),
-        GalleryRoute(),
+        GalleryStackRoute(),
+        ProfileStackRoute(),
       ],
       transitionBuilder: (context, child, animation) => FadeTransition(
         opacity: animation,

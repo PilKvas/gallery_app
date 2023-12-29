@@ -10,7 +10,7 @@ class UserDto with _$UserDto {
     String? password,
     String? phone,
     String? fullName,
-    DateTime? birthDay,
+    @JsonKey(name: 'birthday') DateTime? birthDay,
     @Default([]) List<Role> roles,
   }) = _UserDto;
 

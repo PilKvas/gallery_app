@@ -5,15 +5,15 @@ class RegistrationUseCase {
 
   RegistrationUseCase({required UserRepository repository}) : _repository = repository;
 
-  Future<UserModel> registerUser({
+  Future<void> registerUser({
     required String userName,
     required String email,
     required String password,
     required String phoneNumber,
     String? fullName,
     DateTime? birthday,
-  }) {
-    return _repository.registrateUser(
+  }) async {
+    await _repository.registerUser(
       phoneNumber: phoneNumber,
       userName: userName,
       email: email,

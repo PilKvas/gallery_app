@@ -15,11 +15,12 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<UserModel> getCurrentUser() async {
     final currentUser = await service.getCurrentUser();
+
     return mapper.convert<UserDto, UserModel>(currentUser);
   }
 
   @override
-  Future<UserModel> registrateUser({
+  Future<void> registerUser({
     required String userName,
     required String email,
     required String password,
@@ -36,8 +37,23 @@ class UserRepositoryImpl implements UserRepository {
       phone: phoneNumber,
     );
 
-    final user = await service.registerUser(request: userDto);
+    await service.registerUser(request: userDto);
+  }
 
-    return mapper.convert<UserDto, UserModel>(user);
+  @override
+  Future<void> updateUserInfo({
+    required String id,
+    required String email,
+    required String userName,
+    required String phoneNumber,
+    DateTime? birthDay,
+  }) async {
+    final userDto = UserDto(
+      username: userName,
+      email: email,
+      birthDay: birthDay,
+      phone: phoneNumber,
+    );
+    await service.updateUser(id: id, request: userDto);
   }
 }

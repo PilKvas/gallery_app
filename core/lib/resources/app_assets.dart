@@ -13,4 +13,5 @@ class AppAssets {
   static const eyeIcon = 'assets/eye_icon.svg';
   static const eyeOffIcon = 'assets/eye_off_icon.svg';
   static const searchIcon = 'assets/search_icon.svg';
+  static const profilePicture = 'assets/profile_picture.svg';
 }

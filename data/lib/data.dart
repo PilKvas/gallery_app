@@ -55,3 +55,4 @@ part 'services/registration_service.dart';
 
 part 'models/refresh_token.dart';
 
+part 'repositories/cached_user_repository_impl.dart';

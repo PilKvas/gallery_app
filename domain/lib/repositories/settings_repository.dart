@@ -3,7 +3,11 @@ part of '../domain.dart';
 abstract class SettingsRepository {
   Future<void> saveTokens({required AuthenticationModel model});
 
-  Future<void> deleteTokens();
+  Future<void> deleteAccessToken();
+
+  Future<void> deleteRefreshToken();
+
+  Future<void> deleteAllTokens();
 
   Future<String?> getRefreshToken();
 

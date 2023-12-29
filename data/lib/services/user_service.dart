@@ -16,4 +16,10 @@ abstract class UserService {
   Future<UserDto> getUser({
     @Path('id') required int id,
   });
+
+  @PUT('/api/users/{id}')
+  Future<void> updateUser({
+    @Path('id') required String id,
+    @Body(nullToAbsent: true) required UserDto request,
+  });
 }

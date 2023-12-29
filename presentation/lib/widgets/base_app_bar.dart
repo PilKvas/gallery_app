@@ -1,19 +1,15 @@
-part of '../../../presentation.dart';
+part of '../presentation.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar({super.key});
+  final List<Widget>? actions;
+
+  const BaseAppBar({super.key, this.actions});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      actions: actions,
       iconTheme: const IconThemeData(
-        color: AppColors.blue,
-      ),
-      leading: IconButton(
-        onPressed: () {
-          context.router.pop();
-        },
-        icon: const Icon(Icons.arrow_back_ios_new),
         color: AppColors.blue,
       ),
       elevation: 1,

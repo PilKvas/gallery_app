@@ -12,7 +12,6 @@ class MiddlewareInterceptor extends Interceptor {
 
   @override
   Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
-
     switch (err.response?.statusCode) {
       case 400:
         final validationList = ValidationErrorHelper.getErrorList(err);
@@ -35,6 +34,7 @@ class MiddlewareInterceptor extends Interceptor {
   }
 
   Future<void> refreshToken(RequestOptions options, ErrorInterceptorHandler handler) async {
+    await _storageRepository.deleteAccessToken();
     final refreshToken = await _storageRepository.getRefreshToken();
 
     if (refreshToken != null) {
