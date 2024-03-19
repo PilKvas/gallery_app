@@ -34,5 +34,22 @@
   "thereIsSomeProblem": "There is some problem",
   "tryAgainLater": "Try again later",
   "save": "Save",
-  "signOut": "SignOut"
+  "signOut": "Sign Out",
+  "chooseFromGallery": "Choose from gallery",
+  "takePhoto": "Take a photo",
+  "name": "Name",
+  "description": "Description",
+  "add": "Add",
+  "successAdd": "Photo successfully added",
+  "badRequest":  "Bad request",
+  "forbidden":  "Forbidden",
+  "notFound":  "Not found",
+  "conflict": "Conflict",
+  "unauthorized": "Unauthorized",
+  "serverUnavailable":  "Server unavailable",
+  "serverTemporaryUnavailable":  "Server temporary unavailable",
+  "noInternetConnection":  "No internet connection",
+  "duplicate":  "Duplicate",
+  "timeOut": "Time out",
+  "unknown": "Unknown"
 }

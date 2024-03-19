@@ -10,5 +10,6 @@ import 'package:domain/domain.dart';
   MapType<UserModel, UserDto>(),
   MapType<UserDto, UserModel>(),
   MapType<AuthenticationDto, AuthenticationModel>(),
+  MapType<MediaDto, MediaModel>(),
 ])
 class Mapper extends $Mapper {}

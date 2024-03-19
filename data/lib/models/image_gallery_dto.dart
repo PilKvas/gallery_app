@@ -5,12 +5,12 @@ class ImageGalleryDTO with _$ImageGalleryDTO {
   const ImageGalleryDTO._();
 
   const factory ImageGalleryDTO({
-    required String name,
-    required int id,
-    required DateTime dateCreate,
-    required String description,
-    @JsonKey(name: 'new') required bool isNew,
-    @JsonKey(name: 'popular') required bool isPopular,
+     String? name,
+     int? id,
+     DateTime? dateCreate,
+     String? description,
+    @JsonKey(name: 'new')  bool? isNew,
+    @JsonKey(name: 'popular')  bool? isPopular,
     ImageDetailsDTO? image,
     String? user,
   }) = _ImageGalleryDTO;

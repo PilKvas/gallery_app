@@ -17,7 +17,7 @@ class UserUseCase {
     return _userRepository.getCurrentUser();
   }
 
-  Future<UserModel?> getProfileData() => _cachedUserRepository.getUserData();
+  Future<UserModel?> getCachedCurrentUser() => _cachedUserRepository.getCachedCurrentUser();
 
   Future<void> updateUserInfo({
     required String id,

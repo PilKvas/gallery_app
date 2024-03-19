@@ -5,5 +5,5 @@ abstract class CachedUserRepository {
 
   Future<void> saveUserData({required UserModel userModel});
 
-  Future<UserModel?> getUserData();
+  Future<UserModel?> getCachedCurrentUser();
 }

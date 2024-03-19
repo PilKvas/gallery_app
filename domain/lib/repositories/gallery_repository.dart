@@ -8,4 +8,10 @@ abstract class GalleryRepository {
     bool? isNew,
     String? name,
   });
+
+  Future<void> uploadImage({
+    required String name,
+    required String? description,
+    required String imageIRI,
+  });
 }

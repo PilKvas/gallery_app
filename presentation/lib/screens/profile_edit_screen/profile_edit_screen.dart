@@ -15,19 +15,22 @@ class ProfileEditScreen extends StatefulWidget implements AutoRouteWrapper {
       create: (context) => ProfileEditBloc(
         userUseCase: injection(),
         authUseCase: injection(),
-      ),
+      )..add(
+          ProfileEditEvent.initialize(
+            id: state!.id.toString(),
+            userName: state?.username ?? AppConst.empty,
+            phoneNumber: state?.phone ?? AppConst.empty,
+            email: state?.email ?? AppConst.empty,
+            birthDay: state?.birthDay,
+          ),
+        ),
       child: this,
     );
   }
 }
 
 class _ProfileEditScreenState extends State<ProfileEditScreen> {
-  final _birthDateController = TextEditingController();
-  final _userNameController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
-  final _emailController = TextEditingController();
-
-  void _profileListener(ProfileEditState state) {
+  void _profileListener(BuildContext context, ProfileEditState state) {
     if (state.error != ErrorState.unknown) {
       BaseSnackBar.showBaseSnackBar(
         context,
@@ -35,26 +38,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       );
     }
   }
-
-  @override
-  void initState() {
-    _birthDateController.text = widget.state?.birthDay?.formatDate ?? AppConst.empty;
-    _userNameController.text = widget.state?.username ?? AppConst.empty;
-    _phoneNumberController.text = widget.state?.phone ?? AppConst.empty;
-    _emailController.text = widget.state?.email ?? AppConst.empty;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _birthDateController.dispose();
-    _userNameController.dispose();
-    _phoneNumberController.dispose();
-    _emailController.dispose();
-  }
-
-  DateTime? _birthDate;
 
   @override
   Widget build(BuildContext context) {
@@ -68,102 +51,129 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
         );
         return shouldPop!;
       },
-      child: BlocConsumer<ProfileEditBloc, ProfileEditState>(
-        listener: (context, state) => _profileListener(state),
-        builder: (context, state) {
-          return BaseScaffold(
-            appBar: BaseAppBar(
-              actions: [
-                SizedBox(
-                  width: 50,
-                  child: BaseTextButton(
-                    title: context.localization.save,
-                    onPressed: () => bloc.add(
-                      ProfileEditEvent.updateUser(
-                        email: _emailController.text,
-                        id: widget.state!.id.toString(),
-                        userName: _userNameController.text,
-                        phoneNumber: _phoneNumberController.text,
-                        birthDay: _birthDate,
-                      ),
+      child: BlocListener<ProfileEditBloc, ProfileEditState>(
+        listener: _profileListener,
+        child: BaseScaffold(
+          appBar: BaseAppBar(
+            actions: [
+              SizedBox(
+                width: 50,
+                child: BaseTextButton(
+                  child: Text(context.localization.save),
+                  onPressed: () => bloc.add(
+                    ProfileEditEvent.updateUser(
+                      id: widget.state!.id.toString(),
                     ),
-                    width: 40,
                   ),
+                  width: 40,
+                ),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.localization.personalData,
+                    ),
+                    BlocBuilder<ProfileEditBloc, ProfileEditState>(
+                      buildWhen: (oldState, newState) => oldState.userName != newState.userName,
+                      builder: (context, state) {
+                        return BaseTextField(
+                          isEditTextField: true,
+                          initialValue: state.userName,
+                          onChanged: (value) {
+                            bloc.add(ProfileEditEvent.inputName(userName: value));
+                          },
+                          isDebounsed: false,
+                          filled: false,
+                          showClearIcon: false,
+                          icon: SvgPicture.asset(AppAssets.mailIcon),
+                          hintText: context.localization.userNameRequired,
+                          errorText: state.fields[Fields.userNameField]?.call(context.localization),
+                        );
+                      },
+                    ),
+                    BlocBuilder<ProfileEditBloc, ProfileEditState>(
+                      buildWhen: (oldState, newState) => oldState.birthDate != newState.birthDate,
+                      builder: (context, state) {
+                        return BaseTextField(
+                          isEditTextField: true,
+                          initialValue: state.birthDate.formatDate,
+                          readOnly: true,
+                          filled: false,
+                          showClearIcon: false,
+                          onDateChange: (date) {
+                            bloc.add(
+                              ProfileEditEvent.pickDate(birthDate: date),
+                            );
+                          },
+                          hintText: context.localization.birthday,
+                          icon: SvgPicture.asset(AppAssets.calendarIcon),
+                        );
+                      },
+                    ),
+                    BlocBuilder<ProfileEditBloc, ProfileEditState>(
+                      buildWhen: (oldState, newState) => oldState.number != newState.number,
+                      builder: (context, state) {
+                        return BaseTextField(
+                          isEditTextField: true,
+                          initialValue: state.number,
+                          filled: false,
+                          onChanged: (value) {
+                            bloc.add(ProfileEditEvent.inputNumber(number: value));
+                          },
+                          inputFormatters: [
+                            AppConst.phoneMask,
+                          ],
+                          showClearIcon: false,
+                          isDebounsed: false,
+                          icon: SvgPicture.asset(AppAssets.phoneIcon),
+                          hintText: context.localization.phoneNumberRequired,
+                          errorText: state.fields[Fields.phoneNumberField]?.call(context.localization),
+                        );
+                      },
+                    ),
+                    BlocSelector<ProfileEditBloc, ProfileEditState, (String Function(S)?, String?)>(
+                      selector: (state) => (state.fields[Fields.emailField], state.email),
+                      builder: (context, state) {
+                        return BaseTextField(
+                          isEditTextField: true,
+                          initialValue: state.$2,
+                          onChanged: (value) {
+                            bloc.add(ProfileEditEvent.inputEmail(email: value));
+                          },
+                          isDebounsed: false,
+                          filled: false,
+                          showClearIcon: false,
+                          icon: SvgPicture.asset(AppAssets.mailIcon),
+                          hintText: context.localization.emailRequired,
+                          errorText: state.$1?.call(context.localization),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                BaseTextButton(
+                  child: Text(context.localization.signOut),
+                  onPressed: () {
+                    bloc.add(const ProfileEditEvent.signOut());
+                    context.router.replaceAll(
+                      [
+                        const OnBoardingRoute(),
+                      ],
+                    );
+                  },
+                  width: 100,
                 ),
               ],
             ),
-            body: Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                left: 10,
-                right: 10,
-                bottom: 10,
-              ),
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        context.localization.personalData,
-                      ),
-                      BaseTextField(
-                        showClearIcon: false,
-                        filled: false,
-                        controller: _userNameController,
-                        hintText: context.localization.userNameRequired,
-                        icon: SvgPicture.asset(AppAssets.userNameIcon),
-                        errorText: state.fields[Fields.userNameField]?.call(context.localization),
-                      ),
-                      BaseTextField(
-                        readOnly: true,
-                        filled: false,
-                        showClearIcon: false,
-                        onDateChange: (date) {
-                          _birthDate = date;
-                        },
-                        controller: _birthDateController,
-                        hintText: context.localization.birthday,
-                        icon: SvgPicture.asset(AppAssets.calendarIcon),
-                      ),
-                      BaseTextField(
-                        filled: false,
-                        inputFormatters: [
-                          AppConst.phoneMask,
-                        ],
-                        showClearIcon: false,
-                        controller: _phoneNumberController,
-                        icon: SvgPicture.asset(AppAssets.phoneIcon),
-                        hintText: context.localization.phoneNumberRequired,
-                        errorText: state.fields[Fields.phoneNumberField]?.call(context.localization),
-                      ),
-                      BaseTextField(
-                        filled: false,
-                        showClearIcon: false,
-                        controller: _emailController,
-                        icon: SvgPicture.asset(AppAssets.mailIcon),
-                        hintText: context.localization.emailRequired,
-                        errorText: state.fields[Fields.emailField]?.call(context.localization),
-                      ),
-                    ],
-                  ),
-                  BaseTextButton(
-                    title: context.localization.signOut,
-                    onPressed: () {
-                      bloc.add(const ProfileEditEvent.signOut());
-                      context.router.replaceAll(
-                        [
-                          const OnBoardingRoute(),
-                        ],
-                      );
-                    },
-                    width: 100,
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

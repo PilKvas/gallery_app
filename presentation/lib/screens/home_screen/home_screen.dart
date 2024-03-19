@@ -6,23 +6,28 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsRouter(
-      routes: const [
-        GalleryStackRoute(),
-        GalleryStackRoute(),
-        ProfileStackRoute(),
-      ],
-      transitionBuilder: (context, child, animation) => FadeTransition(
-        opacity: animation,
-        child: child,
-      ),
-      builder: (context, child) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        return Scaffold(
-          body: child,
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: AutoTabsScaffold(
+        routes: const [
+          GalleryStackRoute(),
+          ProfileStackRoute(),
+        ],
+        transitionBuilder: (context, child, animation) => FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            context.router.push(const MediaRoute());
+          },
+        ),
+        bottomNavigationBuilder: (context, router) {
+          return BottomNavigationBar(
+            currentIndex: router.activeIndex,
+            onTap: router.setActiveIndex,
             items: const [
               BottomNavigationBarItem(
                 label: '',
@@ -30,16 +35,12 @@ class HomeScreen extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 label: '',
-                icon: Icon(Icons.photo_camera_rounded),
-              ),
-              BottomNavigationBarItem(
-                label: '',
                 icon: Icon(Icons.person),
               ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

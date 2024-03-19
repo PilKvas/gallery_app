@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget implements AutoRouteWrapper {
     if (state.status == Status.success) {
       FlutterNativeSplash.remove();
 
-      context.router.replace(const GalleryRoute());
+      context.router.replace(const HomeRoute());
     } else if (state.status == Status.initial) {
       FlutterNativeSplash.remove();
 

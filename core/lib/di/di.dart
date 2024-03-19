@@ -16,6 +16,9 @@ Future<void> initializeDependencies() async {
   );
 
   injection
+    ..registerLazySingleton<MediaService>(
+      () => MediaService(dio),
+    )
     ..registerLazySingleton<AuthenticationService>(
       () => AuthenticationService(dio),
     )
@@ -25,17 +28,30 @@ Future<void> initializeDependencies() async {
     ..registerLazySingleton<GalleryService>(
       () => GalleryService(dio),
     )
+    ..registerLazySingleton<MediaRepository>(
+      () => MediaRepositoryImpl(
+        mediaService: injection(),
+      ),
+    )
     ..registerLazySingleton<CachedUserRepository>(
-      () => CachedUserRepositoryImpl(secureStorage: storage),
+      () => CachedUserRepositoryImpl(
+        secureStorage: storage,
+      ),
     )
     ..registerLazySingleton<GalleryRepository>(
       () => GalleryRepositoryImpl(
-        service: injection(),
+        galleryService: injection(),
       ),
     )
     ..registerLazySingleton<UserRepository>(
       () => UserRepositoryImpl(
         service: injection(),
+      ),
+    )
+    ..registerLazySingleton<MediaUseCase>(
+      () => MediaUseCase(
+        mediaRepository: injection(),
+        galleryRepository: injection(),
       ),
     )
     ..registerLazySingleton<GalleryUseCase>(

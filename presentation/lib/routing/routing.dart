@@ -22,7 +22,9 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: RegistrationRoute.page,
         ),
-        AutoRoute(page: ProfileEditRoute.page),
+        AutoRoute(
+          page: MediaRoute.page,
+        ),
         AutoRoute(
           page: HomeRoute.page,
           children: [
@@ -31,8 +33,8 @@ class AppRouter extends _$AppRouter {
               children: [
                 AutoRoute(
                   path: 'profile',
-                  initial: true,
                   page: ProfileRoute.page,
+                  initial: true,
                 ),
                 AutoRoute(
                   path: 'profileEdit',
@@ -49,8 +51,8 @@ class AppRouter extends _$AppRouter {
               children: [
                 AutoRoute(
                   path: 'gallery',
-                  initial: true,
                   page: GalleryRoute.page,
+                  initial: true,
                 ),
                 AutoRoute(
                   path: 'item',

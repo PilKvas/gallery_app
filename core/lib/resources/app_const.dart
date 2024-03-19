@@ -21,6 +21,8 @@ class AppConst {
 
   static const int limit = 10;
 
+  static const int profileLimit = 40;
+
   static const empty = '';
 
   static const regExpEmail = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";

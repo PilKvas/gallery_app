@@ -19,7 +19,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       state.copyWith(status: Status.loading),
     );
 
-    final user = await userUseCase.getProfileData();
+    final user = await userUseCase.getCachedCurrentUser();
 
     emit(
       state.copyWith(
