@@ -1,11 +1,16 @@
 part of '../presentation.dart';
 
 class BaseTextButton extends StatelessWidget {
-  final String title;
   final VoidCallback onPressed;
   final double width;
+  final Widget child;
 
-  const BaseTextButton({required this.title, required this.onPressed, required this.width, super.key});
+  const BaseTextButton({
+    required this.onPressed,
+    required this.width,
+    required this.child,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ class BaseTextButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(title),
+        child: child,
       ),
     );
   }

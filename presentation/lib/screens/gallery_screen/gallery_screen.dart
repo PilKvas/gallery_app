@@ -51,7 +51,7 @@ class _GalleryScreenState extends State<GalleryScreen> with SingleTickerProvider
                         create: (_) => GalleryBloc(
                           fetchDataUseCase: injection(),
                         )..add(
-                            GalleryEvent.galleryListLoaded(
+                            GalleryEvent.loadGalleryList(
                               isNew: index == 0,
                             ),
                           ),

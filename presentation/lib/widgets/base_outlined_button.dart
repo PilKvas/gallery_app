@@ -1,14 +1,13 @@
 part of '../presentation.dart';
 
-class OutLinedButton extends StatelessWidget {
+class BaseOutlinedButton extends StatelessWidget {
   final String title;
-  final double width;
+  final double? width;
   final VoidCallback onPressed;
 
-  const OutLinedButton({
+  const BaseOutlinedButton({
     required this.title,
-    required this.width,
-    required this.onPressed,
+     required this.onPressed, this.width,
     super.key,
   });
 

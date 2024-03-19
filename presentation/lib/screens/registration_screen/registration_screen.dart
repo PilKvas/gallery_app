@@ -181,7 +181,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onPressed: () => context.router.push(
                             const LoginRoute(),
                           ),
-                          title: context.localization.signIn,
+                          child: Text(context.localization.signIn),
                           width: context.screenSize.width * 0.33,
                         ),
                       ],

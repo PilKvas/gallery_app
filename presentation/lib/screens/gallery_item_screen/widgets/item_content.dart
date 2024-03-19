@@ -14,7 +14,7 @@ class ItemContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            imageInfo.name,
+            imageInfo.name ?? AppConst.empty,
             style: context.styling.textTheme.itemTitle,
           ),
           Padding(
@@ -29,7 +29,7 @@ class ItemContent extends StatelessWidget {
                   ),
                 ],
                 Text(
-                  imageInfo.dateCreate.formatDate,
+                  imageInfo.dateCreate.formatDate ?? AppConst.empty,
                   style: context.styling.textTheme.itemDate,
                 ),
               ],
@@ -38,7 +38,7 @@ class ItemContent extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Text(
-              imageInfo.description,
+              imageInfo.description ?? AppConst.empty,
               style: context.styling.textTheme.itemDescription,
             ),
           ),

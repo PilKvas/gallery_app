@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           BaseTextButton(
                             onPressed: () => context.router.push(const RegistrationRoute()),
-                            title: context.localization.signUp,
+                            child: Text(context.localization.signUp),
                             width: context.screenSize.width * 0.33,
                           ),
                         ],

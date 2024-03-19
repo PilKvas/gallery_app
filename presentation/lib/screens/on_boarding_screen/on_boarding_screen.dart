@@ -35,7 +35,7 @@ class OnBoardingScreen extends StatelessWidget {
                   width: context.screenSize.width,
                   title: context.localization.createAccount,
                 ),
-                OutLinedButton(
+                BaseOutlinedButton(
                   onPressed: () => context.router.push(
                     const LoginRoute(),
                   ),

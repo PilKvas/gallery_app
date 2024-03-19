@@ -1,7 +1,10 @@
 part of '../presentation.dart';
 
-class ErrorWidget extends StatelessWidget {
-  const ErrorWidget({
+class CustomError extends StatelessWidget {
+  final String message;
+
+  const CustomError({
+    required this.message,
     super.key,
   });
 
@@ -22,14 +25,7 @@ class ErrorWidget extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                context.localization.thereIsSomeProblem,
-                style: Theme.of(context).textTheme.errorTitle,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                context.localization.tryAgainLater,
+                message,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.errorSubtitle,
               ),

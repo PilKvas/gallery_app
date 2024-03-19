@@ -1,5 +1,7 @@
 library domain;
 
+import 'dart:io';
+
 import 'package:core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,7 +21,7 @@ part 'repositories/gallery_repository.dart';
 
 part 'usecases/gallery_use_cse.dart';
 
-part 'usecases/user_usecase.dart';
+part 'usecases/user_use_case.dart';
 
 part 'usecases/registration_use_case.dart';
 
@@ -27,9 +29,16 @@ part 'repositories/authentication_repository.dart';
 
 part 'models/authentication_model.dart';
 
-part 'usecases/authentication_usecase.dart';
+part 'usecases/authentication_use_case.dart';
 
 part 'repositories/settings_repository.dart';
 
 part 'repositories/cached_user_repository.dart';
+
+part 'models/media_model.dart';
+
+part 'repositories/media_repository.dart';
+
+part 'usecases/media_use_case.dart';
+
 

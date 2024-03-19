@@ -44,4 +44,11 @@ class ValidationHelper {
     }
     return null;
   }
+
+  static Map<Fields, FieldsError>? validateName(String name) {
+    if (name.trim().isEmpty) {
+      return {Fields.nameField: FieldsError.emptyFieldError};
+    }
+    return null;
+  }
 }

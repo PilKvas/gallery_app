@@ -12,65 +12,62 @@ class MediaList extends StatelessWidget {
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollInfo) {
         if (scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent) {
-          bloc.add(GalleryEvent.galleryListLoaded(isNew: isNew));
+          bloc.add(GalleryEvent.loadGalleryList(isNew: isNew));
         }
         return false;
       },
       child: RefreshIndicator(
         onRefresh: () async => bloc.add(
-          GalleryEvent.galleryListLoaded(
+          GalleryEvent.loadGalleryList(
             isNew: isNew,
             refresh: true,
           ),
         ),
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: BlocBuilder<GalleryBloc, GalleryState>(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  BaseTextField(
-                    hintText: context.localization.searchField,
-                    prefixIcon: SvgPicture.asset(
-                      AppAssets.searchIcon,
-                      fit: BoxFit.none,
-                    ),
-                    showClearIcon: true,
-                    isIconPressible: true,
-                    onChanged: (text) => bloc.add(
-                      GalleryEvent.galleryListLoaded(
-                        isNew: isNew,
-                        name: text,
-                        refresh: true,
-                      ),
-                    ),
-                    onPressed: () => bloc.add(
-                      GalleryEvent.galleryListLoaded(
-                        isNew: isNew,
-                        refresh: true,
-                      ),
-                    ),
-                    fillColor: AppColors.lightGrey,
-                    icon: SvgPicture.asset(AppAssets.searchEraseIcon),
-                    filled: true,
+        child: BlocBuilder<GalleryBloc, GalleryState>(
+          builder: (context, state) {
+            if (state.status == Status.failure) {
+              return CustomError(
+                message: state.error.message(context.localization),
+              );
+            }
+            return Column(
+              children: [
+                BaseTextField(
+                  hintText: context.localization.searchField,
+                  prefixIcon: SvgPicture.asset(
+                    AppAssets.searchIcon,
+                    fit: BoxFit.none,
                   ),
-                  if (state.status == Status.success && state.items.isEmpty) ...[
-                    const EmptyListWidget(),
-                  ],
-                  if (state.items.isNotEmpty) ...[
-                    GridWidget(
+                  showClearIcon: true,
+                  isIconPressible: true,
+                  onChanged: (text) => bloc.add(
+                    GalleryEvent.loadGalleryList(
+                      isNew: isNew,
+                      name: text,
+                      refresh: true,
+                    ),
+                  ),
+                  onPressed: () => bloc.add(
+                    GalleryEvent.loadGalleryList(
+                      isNew: isNew,
+                      refresh: true,
+                    ),
+                  ),
+                  fillColor: AppColors.lightGrey,
+                  icon: SvgPicture.asset(AppAssets.searchEraseIcon),
+                  filled: true,
+                ),
+                if (state.items.isNotEmpty) ...[
+                  Expanded(
+                    child: BaseGrid(
                       state: state,
-                      physics: const NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
                     ),
-                  ],
-                  if (state.status == Status.loading && state.isPaginating) ...[
-                    const PaginationLoaderWidget(),
-                  ],
+                  ),
                 ],
-              );
-            },
-          ),
+              ],
+            );
+          },
         ),
       ),
     );

@@ -12,4 +12,9 @@ abstract class GalleryService {
     @Query('name') String? name,
     @Query('user.id') int? id,
   });
+
+  @POST('/api/photos')
+  Future<ImageGalleryDTO> uploadPhoto({
+    @Body() required PhotoCreateRequestDto request,
+  });
 }

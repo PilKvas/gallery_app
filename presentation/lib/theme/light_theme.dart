@@ -2,6 +2,12 @@ part of '../presentation.dart';
 
 final lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    selectedItemColor: AppColors.main,
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: AppColors.main,
+  ),
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.white,
     elevation: 0,

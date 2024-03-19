@@ -14,7 +14,7 @@ class CachedUserRepositoryImpl implements CachedUserRepository {
   }
 
   @override
-  Future<UserModel?> getUserData() async {
+  Future<UserModel?> getCachedCurrentUser() async {
     final json = await _secureStorage.read(key: AppConst.userKey);
 
     if (json != null) {

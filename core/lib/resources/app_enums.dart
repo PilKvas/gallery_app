@@ -34,6 +34,7 @@ enum Status {
 }
 
 enum Fields {
+  nameField('name'),
   emailField('email'),
   emailCanonical('emailCanonical'),
   userNameField('username'),

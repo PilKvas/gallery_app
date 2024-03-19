@@ -2,7 +2,8 @@ part of '../presentation.dart';
 
 class BaseTextField extends StatefulWidget {
   final bool showClearIcon;
-  final Widget icon;
+  final EdgeInsetsGeometry? contentPadding;
+  final Widget? icon;
   final bool filled;
   final bool showError;
   final bool? readOnly;
@@ -21,11 +22,15 @@ class BaseTextField extends StatefulWidget {
   final ValueChanged<DateTime>? onDateChange;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
+  final TextAlignVertical? textAlignVertical;
+  final String? initialValue;
+  final bool? isDebounsed;
+  final bool? isEditTextField;
 
   const BaseTextField({
-    required this.icon,
     required this.showClearIcon,
     required this.filled,
+    this.icon,
     super.key,
     this.border,
     this.hintText,
@@ -44,6 +49,11 @@ class BaseTextField extends StatefulWidget {
     this.isRequired = false,
     this.isPassword = false,
     this.isIconPressible = false,
+    this.contentPadding,
+    this.textAlignVertical,
+    this.initialValue,
+    this.isDebounsed,
+    this.isEditTextField = false,
   });
 
   @override
@@ -59,10 +69,20 @@ class _BaseTextFieldState extends State<BaseTextField> {
   late DateTime? _selectedDate;
 
   @override
+  void didUpdateWidget(covariant BaseTextField oldWidget) {
+    if (widget.isEditTextField == false) return;
+    _textController.text = widget.initialValue ?? '';
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void initState() {
     super.initState();
     _isObscured = widget.isPassword;
-    _textController = widget.controller ?? TextEditingController();
+    _textController = widget.controller ??
+        TextEditingController(
+          text: widget.initialValue,
+        );
     _focusNode.addListener(
       () {
         if (context.mounted) {
@@ -88,7 +108,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
     });
   }
 
-  Widget defineIcon() {
+  Widget? defineIcon() {
     if (widget.isIconPressible) {
       if (widget.showClearIcon) {
         return SvgPicture.asset(
@@ -136,14 +156,20 @@ class _BaseTextFieldState extends State<BaseTextField> {
         validator: widget.validator,
         controller: _textController,
         focusNode: _focusNode,
+        textAlignVertical: widget.textAlignVertical,
         onChanged: (text) {
-          _debouncer.run(
-            () {
-              widget.onChanged?.call(text);
-            },
-          );
+          if (widget.isDebounsed == false) {
+            widget.onChanged?.call(text);
+          } else {
+            _debouncer.run(
+              () {
+                widget.onChanged?.call(text);
+              },
+            );
+          }
         },
         decoration: InputDecoration(
+          isDense: false,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(width: 2, color: AppColors.main),
@@ -151,11 +177,11 @@ class _BaseTextFieldState extends State<BaseTextField> {
           errorText: widget.errorText,
           filled: widget.filled,
           fillColor: widget.fillColor,
-          contentPadding: const EdgeInsets.all(8),
+          contentPadding: widget.contentPadding ?? const EdgeInsets.all(8),
           prefixIcon: widget.prefixIcon,
           suffixIcon: IconButton(
             splashRadius: 10,
-            icon: defineIcon(),
+            icon: defineIcon() ?? const SizedBox(),
             onPressed: defineIconButton,
           ),
           hintText: widget.hintText,
@@ -180,7 +206,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
 
     if (date != null) {
       _selectedDate = date;
-      widget.controller?.text = _selectedDate!.formatDate;
+      widget.controller?.text = _selectedDate!.formatDate!;
 
       return date;
     }

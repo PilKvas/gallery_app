@@ -56,3 +56,11 @@ part 'services/registration_service.dart';
 part 'models/refresh_token.dart';
 
 part 'repositories/cached_user_repository_impl.dart';
+
+part 'models/media_dto.dart';
+
+part 'services/media_service.dart';
+
+part 'repositories/media_repository_impl.dart';
+
+part 'models/photo_create_request_dto.dart';
